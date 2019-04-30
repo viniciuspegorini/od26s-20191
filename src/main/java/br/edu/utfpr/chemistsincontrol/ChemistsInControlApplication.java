@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ChemistsInControlApplication {
 
     public static void main(String[] args) {
+    	System.out.println("Incializando o projeto");
         SpringApplication.run(ChemistsInControlApplication.class, args);
     }
 
