@@ -1,8 +1,6 @@
 package br.edu.utfpr.chemistsincontrol.repository;
 
-public class ModeloRepository {
+import br.edu.utfpr.chemistsincontrol.model.Modelo;
 
-
-
-
+public interface ModeloRepository extends IRepository<Modelo> {
 }
