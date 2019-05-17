@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class CrudController<T, ID extends Serializable> {
+public abstract class  CrudController<T, ID extends Serializable> {
 
     protected abstract CrudService<T, ID> getService();
 
