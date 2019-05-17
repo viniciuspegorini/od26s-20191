@@ -10,8 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public abstract class CrudServiceImpl<T extends AbstratModel> implements CrudService<T > {
-
+public abstract class CrudServiceImpl<T extends AbstractModel> implements CrudService<T> {
 
     protected abstract IRepository<T> getRepository();
 
