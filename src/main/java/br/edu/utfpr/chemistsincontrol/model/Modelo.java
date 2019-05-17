@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,14 +17,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Modelo {
+public class Modelo extends AbstractModel{
+    
+    @NotNull(message = "--")
+    @Column(length = 50, nullable = false)
+    private String nome;
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @NotNull(message = "--")
+    @Column(length = 50, nullable = false)
+    private String metodologia;
 
-
+    @Type(type="TEXT")
+    @NotNull(message = "--")
+    @Column(length = 50, nullable = false)
+    private String resultado;
 
 
 }
