@@ -18,10 +18,7 @@ public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao> impleme
 
     }
 
-    @Override
-    public Optional<Instituicao> findByUsuarioAndSenha(String usuario, String senha) {
-        return getRepository().findByUsuarioAndSenha(usuario, senha);
-    }
+
 
     @Override
     protected InstituicaoRepository getRepository() {

@@ -15,25 +15,29 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-/*@NamedQueries({
+@NamedQueries({
         @NamedQuery(name = "instituicao.findByEmailSenha",
                 query = "Select u From instituicao u "
                         + "Where u.email=:email AND "
                         + "u.senha=:senha")
-})*/
+})
 public class Instituicao extends  AbstractModel{
 
-    //public static final String findByEmailSenha = "instituicao.findByEmailSenha";
+    public static final String findByEmailSenha = "instituicao.findByEmailSenha";
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    @NotNull(message = "campo Razão Social é Obrigatório'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Primeiro Nome'.")
     @Column(length = 150, nullable = false)
     private String razaoSocial;
 
-    @NotNull(message = "campo Nome Fantasia é Obrigatório.")
-    @Column(length = 150, nullable = false)
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Segundo Nome'.")
+    @Column(length = 50, nullable = false)
     private String nomeFantasia;
 
-    @NotNull(message = "Campo CNPJ É de preenchimento Obrigatório'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'CPF'.")
     @Column(length = 14, nullable = false)
     private String cnpj;
 
