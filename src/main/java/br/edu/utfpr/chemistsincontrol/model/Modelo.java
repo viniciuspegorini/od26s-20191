@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(of = "id")
 @Data
 public class Modelo extends AbstractModel{
-    
+
     @NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String nome;
