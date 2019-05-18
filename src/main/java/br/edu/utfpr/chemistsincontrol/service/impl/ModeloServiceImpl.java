@@ -1,13 +1,19 @@
 package br.edu.utfpr.chemistsincontrol.service.impl;
 
 import br.edu.utfpr.chemistsincontrol.model.Modelo;
-import br.edu.utfpr.chemistsincontrol.service.impl.CrudServiceImpl;
-import org.springframework.data.jpa.repository.JpaRepository;
+import br.edu.utfpr.chemistsincontrol.repository.ModeloRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ModeloServiceImpl extends CrudServiceImpl<Modelo, Integer> {
+public class ModeloServiceImpl extends CrudServiceImpl<Modelo> {
+
+    private ModeloRepository repository;
+    @Autowired
+    public ModeloServiceImpl(ModeloRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
-    protected JpaRepository<Modelo, Integer> getRepository() {
-        return null;
+    protected ModeloRepository getRepository() {
+        return this.repository;
     }
 }
