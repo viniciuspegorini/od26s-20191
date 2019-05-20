@@ -21,12 +21,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Preco {
+public class Preco extends AbstractModel {
 	
 	 private static final long serialVersionUID = 1L;
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    Long id;
 
 	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
 	    @Column(length = 45, nullable = false)

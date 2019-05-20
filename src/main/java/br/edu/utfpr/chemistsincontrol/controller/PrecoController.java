@@ -12,14 +12,14 @@ import br.edu.utfpr.chemistsincontrol.service.PrecoService;
 
 @RestController
 @RequestMapping("preco")
-public class PrecoController extends CrudController<Preco, Integer> {
+public class PrecoController extends CrudController<Preco> {
 
 	@Autowired
 	private PrecoService precoService;
 	
 	@Override
 	@Valid
-	protected CrudService<Preco, Integer> getService() {
+	protected CrudService<Preco> getService() {
 		return precoService;
 	}
 }
