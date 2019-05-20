@@ -23,6 +23,7 @@ public class Modelo extends AbstractModel{
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @Type(type="TEXT")
     @NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String metodologia;
