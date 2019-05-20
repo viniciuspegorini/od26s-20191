@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface InstituicaoService extends CrudService<Instituicao> {
 
-    Optional<Instituicao> findByUsuarioAndSenha(String usuario, String senha);
+
 }
