@@ -17,20 +17,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Modelo extends AbstractModel{
+public class Modelo extends AbstractModel {
 
     @NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String nome;
 
-    @Type(type="TEXT")
+    @Type(type = "text")
     @NotNull(message = "--")
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String metodologia;
 
-    @Type(type="TEXT")
+    @Type(type = "text")
     @NotNull(message = "--")
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String resultado;
 
 

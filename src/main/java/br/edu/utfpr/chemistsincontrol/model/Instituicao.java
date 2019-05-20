@@ -15,12 +15,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-@NamedQueries({
-        @NamedQuery(name = "instituicao.findByEmailSenha",
-                query = "Select u From instituicao u "
-                        + "Where u.email=:email AND "
-                        + "u.senha=:senha")
-})
 public class Instituicao extends  AbstractModel{
 
     public static final String findByEmailSenha = "instituicao.findByEmailSenha";
