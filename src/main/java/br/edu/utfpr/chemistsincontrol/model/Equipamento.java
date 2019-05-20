@@ -24,7 +24,7 @@ public class Equipamento {
 	 private static final long serialVersionUID = 1L;
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    Long id;
+	    Integer id;
 
 	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
 	    @Column(length = 100, nullable = false)

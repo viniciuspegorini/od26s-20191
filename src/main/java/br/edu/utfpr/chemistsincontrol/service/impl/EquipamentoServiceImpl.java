@@ -9,14 +9,14 @@ import br.edu.utfpr.chemistsincontrol.repository.EquipamentoRepository;
 import br.edu.utfpr.chemistsincontrol.service.EquipamentoService;
 
 @Service
-public class EquipamentoServiceImpl extends CrudServiceImpl<Equipamento, Long>
+public class EquipamentoServiceImpl extends CrudServiceImpl<Equipamento, Integer>
 implements EquipamentoService{
 
 	@Autowired
 	private EquipamentoRepository equipamentoRepository;
 	
 	@Override
-	protected JpaRepository<Equipamento, Long> getRepository() {
+	protected JpaRepository<Equipamento, Integer> getRepository() {
 		return equipamentoRepository;
 	}
 }
