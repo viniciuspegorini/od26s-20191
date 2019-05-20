@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.io.Serializable;
 import java.util.List;
 
 public interface CrudService<T extends AbstractModel> {

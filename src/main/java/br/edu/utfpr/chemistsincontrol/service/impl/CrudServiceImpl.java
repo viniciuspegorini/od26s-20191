@@ -6,7 +6,6 @@ import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package br.edu.utfpr.chemistsincontrol.service.impl;
 
+import br.edu.utfpr.chemistsincontrol.repository.IRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -9,14 +10,14 @@ import br.edu.utfpr.chemistsincontrol.repository.PrecoRepository;
 import br.edu.utfpr.chemistsincontrol.service.PrecoService;
 
 @Service
-public class PrecoServiceImpl extends CrudServiceImpl<Preco, Integer>
+public class PrecoServiceImpl extends CrudServiceImpl<Preco>
 implements PrecoService{
 
 	@Autowired
 	private PrecoRepository precoRepository;
 	
 	@Override
-	protected JpaRepository<Preco, Integer> getRepository() {
+	protected IRepository<Preco> getRepository() {
 		return precoRepository;
 	}
 }
