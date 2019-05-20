@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "usuario")
 @AllArgsConstructor
 @NoArgsConstructor
+
 @EqualsAndHashCode(of = {"id", "usuario"})
 public class Usuario extends AbstractModel {
     @NotNull( message = "O E-mail é obrigatório!")
