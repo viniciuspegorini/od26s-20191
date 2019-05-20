@@ -2,9 +2,12 @@ package br.edu.utfpr.chemistsincontrol.service.impl;
 
 import br.edu.utfpr.chemistsincontrol.model.Modelo;
 import br.edu.utfpr.chemistsincontrol.repository.ModeloRepository;
+import br.edu.utfpr.chemistsincontrol.service.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ModeloServiceImpl extends CrudServiceImpl<Modelo> {
+@Service
+public class ModeloServiceImpl extends CrudServiceImpl<Modelo> implements ModeloService {
 
     private ModeloRepository repository;
     @Autowired

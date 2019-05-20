@@ -4,9 +4,11 @@ import br.edu.utfpr.chemistsincontrol.model.Instituicao;
 import br.edu.utfpr.chemistsincontrol.repository.InstituicaoRepository;
 import br.edu.utfpr.chemistsincontrol.service.InstituicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao> implements InstituicaoService {
 
 
@@ -17,8 +19,6 @@ public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao> impleme
         this.repository = repository;
 
     }
-
-
 
     @Override
     protected InstituicaoRepository getRepository() {

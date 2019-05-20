@@ -5,9 +5,11 @@ import br.edu.utfpr.chemistsincontrol.repository.IRepository;
 import br.edu.utfpr.chemistsincontrol.repository.UsuarioRepository;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService {
 
 
