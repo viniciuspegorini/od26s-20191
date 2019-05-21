@@ -16,43 +16,49 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Pessoa extends AbstractModel {
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'CPF'.")
+    @Column(length = 100, nullable = false)
+    private String cpf;
 
     @NotNull(message = "Não esqueça de preencher o campo 'CPF'.")
     @Column(length = 14, nullable = false)
     private String cpfCnpj;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'RG'.")
     @Column(length = 100, nullable = false)
     private String rg;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Telefone'.")
     @Column(length = 100, nullable = false)
     private String telefone;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Celular'.")
     @Column(length = 100, nullable = false)
     private String celular;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
     @Column(length = 100, nullable = false)
     private String departamento;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
     @Column(length = 100, nullable = false)
     private String status;
 
+    @NotNull(message = "Opa!! Não esqueça de selecionar o campo 'Pessoa'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Pessoa pessoa;
 
+    @NotNull(message = "Opa!! Não esqueça de selecionar o campo 'Instituição'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Instituicao instituicao;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Pessoa'.")
+    @NotNull(message = "Opa!! Não esqueça de selecionar o campo 'Usuario'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Usuario usuario;
