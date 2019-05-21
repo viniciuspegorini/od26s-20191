@@ -21,8 +21,8 @@ public class Pessoa extends AbstractModel {
     private String nome;
 
     @NotNull(message = "Não esqueça de preencher o campo 'CPF'.")
-    @Column(length = 100, nullable = false)
-    private String cpf;
+    @Column(length = 14, nullable = false)
+    private String cpfCnpj;
 
     @NotNull(message = "Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
@@ -44,12 +44,10 @@ public class Pessoa extends AbstractModel {
     @Column(length = 100, nullable = false)
     private String status;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Pessoa'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Pessoa pessoa;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'Pessoa'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Instituicao instituicao;

@@ -2,10 +2,9 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -14,14 +13,22 @@ import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(of = {"id", "usuario"})
 public class Usuario extends AbstractModel {
-    @NotNull( message = "O E-mail é obrigatório!")
+    @NotNull(message = "O E-mail é obrigatório!")
     @Column(nullable = false, unique = true)
     private String usuario;
-    @NotNull( message = "a Senha é obrigatória!")
+    @NotNull(message = "A Senha é obrigatória!")
     @Column(nullable = false)
     private String senha;
     @Column
     private String nome;
+
+    @OneToMany(orphanRemoval = true)
+    @JoinTable(
+            name = "usuario_permissoes",
+            joinColumns = @JoinColumn(name = "id_permissao"),
+            inverseJoinColumns = @JoinColumn(name = "id_usuario")
+    )
+    private List<Permissoes> roles;
 
     public String getUsuario() {
         return usuario;
@@ -45,5 +52,13 @@ public class Usuario extends AbstractModel {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Permissoes> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Permissoes> roles) {
+        this.roles = roles;
     }
 }

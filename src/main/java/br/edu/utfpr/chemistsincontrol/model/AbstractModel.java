@@ -20,6 +20,7 @@ public abstract class AbstractModel implements Serializable {
 
     @CreatedDate
     private Date createdDate;
+
     @LastModifiedDate
     private Date lastModifiedDate;
 
