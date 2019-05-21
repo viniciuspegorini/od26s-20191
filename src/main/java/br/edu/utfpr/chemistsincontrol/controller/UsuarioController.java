@@ -6,6 +6,7 @@ import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,9 @@ public class UsuarioController extends CrudController<Usuario> {
     private PasswordEncoder encoder;
 
     @Autowired
-    public UsuarioController(UsuarioService service) {
+    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
         this.usuarioService = service;
+        this.encoder = encoder;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class UsuarioController extends CrudController<Usuario> {
 
     @Override
     @PostMapping
-    public Usuario save(@Valid Usuario entity) {
+    public Usuario save( @RequestBody @Valid Usuario entity) {
         if (entity.getId().equals(0L)) {
             entity.setSenha(encoder.encode(entity.getSenha()));
         }

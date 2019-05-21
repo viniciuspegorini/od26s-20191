@@ -17,11 +17,7 @@ import java.time.LocalDate;
 @Data
 public class Instituicao extends  AbstractModel{
 
-    public static final String findByEmailSenha = "instituicao.findByEmailSenha";
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Primeiro Nome'.")
     @Column(length = 150, nullable = false)
