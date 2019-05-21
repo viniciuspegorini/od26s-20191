@@ -24,6 +24,10 @@ public class Pessoa extends AbstractModel {
     @Column(length = 100, nullable = false)
     private String cpf;
 
+    @NotNull(message = "Não esqueça de preencher o campo 'CPF'.")
+    @Column(length = 14, nullable = false)
+    private String cpfCnpj;
+
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'RG'.")
     @Column(length = 100, nullable = false)
     private String rg;
