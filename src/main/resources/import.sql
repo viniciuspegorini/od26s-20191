@@ -7,6 +7,11 @@ insert into pessoa (id, created_by, created_date, last_modified_by, last_modifie
 insert into preco (id, created_by, created_date, last_modified_by, last_modified_date, tipo_pessoa, un_medida, valor, equipamento_id ) values (1,'TESTE', '2019-05-21 19:10:11.484', 'TESTE', '2019-05-21 19:10:11.484', 'Tipo Pessoa', 'Unidade', 10.5, 1 );
 insert into usuario_permissoes( id_usuario, id_permissao ) values ( 1, 1 );
 
+-- insert into permissao (nome) values('ROLE_ADMIN');
+-- insert into permissao (nome) values('ROLE_SOLICITANTE');
+-- insert into permissao (nome) values('ROLE_TECNICO');
+-- insert into permissao (nome) values('ROLE_RECEP');
+
 select nextval( 'usuario_id_seq' );
 select nextval( 'equipamento_id_seq' );
 select nextval( 'instituicao_id_seq' );
