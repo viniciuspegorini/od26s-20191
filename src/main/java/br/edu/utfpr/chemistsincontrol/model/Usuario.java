@@ -36,23 +36,9 @@ public class Usuario extends AbstractModel implements UserDetails {
             joinColumns = @JoinColumn(name = "id_permissao"),
             inverseJoinColumns = @JoinColumn(name = "id_usuario")
     )
-    private List<Permissao> roles;
-
-    @ManyToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-
     private Set<Permissao> permissoes;
 
-
-    public List<Permissao> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Permissao> roles) {
-        this.roles = roles;
-    }
-
-    public String getUsuario() {
+        public String getUsuario() {
         return usuario;
     }
 

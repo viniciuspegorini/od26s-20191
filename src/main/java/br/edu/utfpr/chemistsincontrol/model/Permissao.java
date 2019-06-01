@@ -7,14 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 @Entity
-public class Permissao implements GrantedAuthority {
+public class Permissao extends AbstractModel implements GrantedAuthority {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
 
     @Column(length = 50, nullable = false)
     @Getter @Setter
@@ -25,4 +20,11 @@ public class Permissao implements GrantedAuthority {
         return this.nome;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

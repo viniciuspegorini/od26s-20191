@@ -5,12 +5,15 @@ import br.edu.utfpr.chemistsincontrol.repository.IRepository;
 import br.edu.utfpr.chemistsincontrol.repository.UsuarioRepository;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService {
+public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService, UserDetailsService {
 
 
     private UsuarioRepository repository;
@@ -29,5 +32,10 @@ public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements Usua
     @Override
     protected UsuarioRepository getRepository() {
         return this.repository;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
     }
 }
