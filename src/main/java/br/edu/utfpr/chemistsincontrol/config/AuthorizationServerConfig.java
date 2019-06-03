@@ -43,7 +43,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         oauthServer
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permitAll()")
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder(10));
     }
 
 }	

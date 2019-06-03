@@ -10,32 +10,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService, UserDetailsService {
 
-
-    private UsuarioRepository repository;
-
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository repository) {
-        this.repository = repository;
-
-    }
+    private UsuarioRepository usuarioRepository;
 
     @Override
-    public Optional<Usuario> findByUsuarioAndSenha(String usuario, String senha) {
-        return getRepository().findByUsuarioAndSenha(usuario, senha);
-    }
-
-    @Override
-    protected UsuarioRepository getRepository() {
-        return this.repository;
+    protected IRepository<Usuario> getRepository() {
+        return usuarioRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+        return usuarioRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
     }
+
+    @Override
+    public Iterable<Usuario> save(Iterable iterable) {
+        return super.save(iterable);
+    }
+
+
 }

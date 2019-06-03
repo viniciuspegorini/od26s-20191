@@ -1,76 +1,38 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import lombok.*;
+
+import lombok.Data;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-@Table(name = "usuario")
-@AllArgsConstructor
-@NoArgsConstructor
-
-@EqualsAndHashCode(of = {"id", "usuario"})
+@Data
 public class Usuario extends AbstractModel implements UserDetails {
+    private static final long serialVersionUID = 1L;
+    private static final BCryptPasswordEncoder bCrypt =
+            new BCryptPasswordEncoder(10);
 
-    @NotNull(message = "O E-mail é obrigatório!")
-    @Column(nullable = false, unique = true)
-    private String usuario;
-
-    @NotNull(message = "A Senha é obrigatória!")
-    @Column(nullable = false)
-    private String senha;
-
-    @Column
+    @Column(length = 100, nullable = false)
     private String nome;
 
-    @OneToMany(orphanRemoval = true)
-    @JoinTable(
-            name = "usuario_permissoes",
-            joinColumns = @JoinColumn(name = "id_permissao"),
-            inverseJoinColumns = @JoinColumn(name = "id_usuario")
-    )
+    @Column(length = 100, nullable = false)
+    private String username;
+
+    @Column(length = 512, nullable = false)
+    private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private Set<Permissao> permissoes;
 
-        public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Set<Permissao> getPermissoes() {
-        return permissoes;
-    }
-
-    public void setPermissoes(Set<Permissao> permissoes) {
-        this.permissoes = permissoes;
-    }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> auto = new ArrayList<>();
         auto.addAll(getPermissoes());
@@ -78,14 +40,32 @@ public class Usuario extends AbstractModel implements UserDetails {
         return auto;
     }
 
+    public Set<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void addPermissao(Permissao permissao) {
+        if (permissoes == null) {
+            permissoes = new HashSet<>();
+        }
+        permissoes.add(permissao);
+    }
+
+    public String getEncodedPassword(String pass) {
+        if (pass != null && !pass.equals("")) {
+            return bCrypt.encode(pass);
+        }
+        return pass;
+    }
+
     @Override
     public String getPassword() {
-        return this.senha;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return this.usuario;
+        return this.username;
     }
 
     @Override
@@ -107,4 +87,5 @@ public class Usuario extends AbstractModel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
