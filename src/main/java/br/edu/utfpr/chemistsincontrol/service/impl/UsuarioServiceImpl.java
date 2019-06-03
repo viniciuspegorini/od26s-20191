@@ -5,29 +5,31 @@ import br.edu.utfpr.chemistsincontrol.repository.IRepository;
 import br.edu.utfpr.chemistsincontrol.repository.UsuarioRepository;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService {
-
-
-    private UsuarioRepository repository;
+public class UsuarioServiceImpl extends CrudServiceImpl<Usuario> implements UsuarioService, UserDetailsService {
 
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository repository) {
-        this.repository = repository;
+    private UsuarioRepository usuarioRepository;
 
+    @Override
+    protected IRepository<Usuario> getRepository() {
+        return usuarioRepository;
     }
 
     @Override
-    public Optional<Usuario> findByUsuarioAndSenha(String usuario, String senha) {
-        return getRepository().findByUsuarioAndSenha(usuario, senha);
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return usuarioRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
     }
 
     @Override
-    protected UsuarioRepository getRepository() {
-        return this.repository;
+    public Iterable<Usuario> save(Iterable iterable) {
+        return super.save(iterable);
     }
+
+
 }

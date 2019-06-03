@@ -16,11 +16,11 @@ public class UsuarioController extends CrudController<Usuario> {
     private UsuarioService usuarioService;
     private PasswordEncoder encoder;
 
-    @Autowired
-    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
-        this.usuarioService = service;
-        this.encoder = encoder;
-    }
+//    @Autowired
+//    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
+//        this.usuarioService = service;
+//        this.encoder = encoder;
+//    }
 
     @Override
     protected CrudService<Usuario> getService() {
@@ -32,14 +32,14 @@ public class UsuarioController extends CrudController<Usuario> {
     @PostMapping
     public Usuario save(@RequestBody @Valid Usuario entity) {
         if (entity.getId().equals(0L)) {
-            entity.setSenha(encoder.encode(entity.getSenha()));
+            entity.setPassword(encoder.encode(entity.getPassword()));
         }
         return super.save(entity);
     }
 
     @PutMapping("/alterar-senha")
     public Usuario alteraSenha(Usuario usuario) {
-        usuario.setSenha(this.encoder.encode(usuario.getSenha()));
+        usuario.setPassword(this.encoder.encode(usuario.getPassword()));
         return super.save(usuario);
     }
 }
