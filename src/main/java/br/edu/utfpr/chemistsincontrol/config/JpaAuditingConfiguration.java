@@ -14,10 +14,11 @@ import java.util.Optional;
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class JpaAuditingConfiguration {
 
+    public static final ThreadLocal<Long> _user = new ThreadLocal<>();
 
     @Bean
-    public AuditorAware<String> auditorProvider() {
-        return () -> Optional.ofNullable("TESTE");
+    public AuditorAware<Long> auditorProvider() {
+        return () -> Optional.ofNullable(_user.get());
     }
 
 }
