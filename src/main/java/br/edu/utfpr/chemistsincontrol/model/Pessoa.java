@@ -44,6 +44,10 @@ public class Pessoa extends AbstractModel {
     @Column(length = 100, nullable = false)
     private String status;
 
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
+    @Column(length = 100, nullable = false)
+    private String tipoPessoa;
+
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Pessoa pessoa;
