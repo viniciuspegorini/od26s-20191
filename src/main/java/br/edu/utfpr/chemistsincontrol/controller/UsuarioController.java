@@ -3,7 +3,6 @@ package br.edu.utfpr.chemistsincontrol.controller;
 import br.edu.utfpr.chemistsincontrol.model.Usuario;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +14,6 @@ public class UsuarioController extends CrudController<Usuario> {
 
     private UsuarioService usuarioService;
     private PasswordEncoder encoder;
-
-//    @Autowired
-//    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
-//        this.usuarioService = service;
-//        this.encoder = encoder;
-//    }
 
     @Override
     protected CrudService<Usuario> getService() {
