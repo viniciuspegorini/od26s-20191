@@ -15,12 +15,6 @@ public class UsuarioController extends CrudController<Usuario> {
     private UsuarioService usuarioService;
     private PasswordEncoder encoder;
 
-//    @Autowired
-//    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
-//        this.usuarioService = service;
-//        this.encoder = encoder;
-//    }
-
     @Override
     protected CrudService<Usuario> getService() {
         return this.usuarioService;
