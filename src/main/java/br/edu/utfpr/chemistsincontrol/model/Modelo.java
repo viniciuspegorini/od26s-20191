@@ -19,7 +19,9 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Modelo extends AbstractModel {
 
-    @NotNull(message = "--")
+	private static final long serialVersionUID = 1L;
+
+	@NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String nome;
 
@@ -32,6 +34,10 @@ public class Modelo extends AbstractModel {
     @NotNull(message = "--")
     @Column(nullable = false)
     private String resultado;
+    
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Preco preco;
 
 
 }

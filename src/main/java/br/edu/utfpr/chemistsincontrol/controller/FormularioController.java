@@ -10,8 +10,6 @@ import br.edu.utfpr.chemistsincontrol.model.Formulario;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.FormularioService;
 
-
-
 @RestController
 @RequestMapping("formulario")
 public class FormularioController extends CrudController<Formulario> {
@@ -24,4 +22,5 @@ public class FormularioController extends CrudController<Formulario> {
     protected CrudService<Formulario> getService() {
         return formularioService;
     }
+    
 }

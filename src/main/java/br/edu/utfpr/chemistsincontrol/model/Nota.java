@@ -42,6 +42,9 @@ public class Nota extends AbstractModel{
     
     @NotEmpty(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
     @Column(nullable = false)
-    private Date data;
+    private Date dataEmissao;
+    
+	@Column(nullable = false)
+    private byte[] anexo;
 	
 }
