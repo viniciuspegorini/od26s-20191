@@ -6,6 +6,5 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends IRepository<Usuario> {
 
-    Optional<Usuario> findByUsuarioAndSenha(String usuario, String senha);
-
+    Optional<Usuario> findByUsername(String username);
 }
