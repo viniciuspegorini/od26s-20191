@@ -12,9 +12,7 @@ insert into permissao (nome ) values ('ROLE_USER' );
 
 insert into usuario_permissoes( usuario_id, permissoes_id ) values ( 1, 1 );
 insert into usuario_permissoes( usuario_id, permissoes_id ) values ( 1, 2 );
---
---
---
+
 select nextval( 'usuario_id_seq' );
 select nextval( 'equipamento_id_seq' );
 select nextval( 'instituicao_id_seq' );
@@ -22,6 +20,4 @@ select nextval( 'modelo_id_seq' );
 select nextval( 'permissao_id_seq' );
 select nextval( 'pessoa_id_seq' );
 select nextval( 'preco_id_seq' );
---
---
--- //$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem
+
