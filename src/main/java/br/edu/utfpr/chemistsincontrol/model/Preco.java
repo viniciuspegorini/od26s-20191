@@ -2,9 +2,6 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,11 +24,11 @@ public class Preco extends AbstractModel {
 
 	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
 	    @Column(length = 45, nullable = false)
-	    private String tipo_pessoa;
+	    private String tipoPessoa;
 	    
 	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Unidade de Medida'.")
 	    @Column(length = 45, nullable = false)
-	    private String un_medida;
+	    private String unMedida;
 	    
 	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Valor'.")
 	    @Column(nullable = false)
