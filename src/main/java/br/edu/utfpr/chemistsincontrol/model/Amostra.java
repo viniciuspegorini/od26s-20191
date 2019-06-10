@@ -1,5 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -14,6 +16,7 @@ public class Amostra extends AbstractModel {
 
     @Column
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataRecebimento;
 
     public String getDescricao() {
