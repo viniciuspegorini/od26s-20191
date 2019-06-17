@@ -1,3 +1,4 @@
+insert into amostra (id, created_by, created_date, last_modified_by, last_modified_date, descricao, data_recebimento) values (1,'TESTE', '2019-05-21 19:10:11.484', 'TESTE', '2019-05-21 19:10:11.484', 'Amostra Teste', '2019-06-03 21:50:11.484' );
 
 
 insert into usuario (id, created_by, created_date, last_modified_by, last_modified_date, nome, password, username) values (1, null, '2019-05-21 19:10:11.484', null, '2019-05-21 19:10:11.484', 'João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', 'admin');
