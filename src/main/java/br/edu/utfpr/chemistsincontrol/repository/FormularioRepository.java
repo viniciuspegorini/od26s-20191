@@ -10,6 +10,6 @@ import br.edu.utfpr.chemistsincontrol.model.Formulario;
 
 public interface FormularioRepository  extends IRepository<Formulario>{
 	
-    List<Formulario> findAllOrderByStatus();
+    List<Formulario> findAllByOrderByStatus();
 
 }

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("usuario")
@@ -24,7 +25,7 @@ public class UsuarioController extends CrudController<Usuario> {
     @Override
     @PostMapping
     public Usuario save(@RequestBody @Valid Usuario entity) {
-        if (entity.getId().equals(0L)) {
+        if (Optional.ofNullable(entity.getId()).orElse(0L).equals(0L)) {
             entity.setPassword(encoder.encode(entity.getPassword()));
         }
         return super.save(entity);

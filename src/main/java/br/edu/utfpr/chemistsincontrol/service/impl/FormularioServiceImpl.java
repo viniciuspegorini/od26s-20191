@@ -23,7 +23,7 @@ implements FormularioService{
 
 	@Override
 	public List<Formulario> getForm() {
-		List<Formulario> forms = formularioRepository.findAllOrderByStatus();
+		List<Formulario> forms = formularioRepository.findAllByOrderByStatus();
 		
 		return forms;
 	}
