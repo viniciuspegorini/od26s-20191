@@ -14,6 +14,9 @@ insert into permissao (nome ) values ('ROLE_SOLICITANTE' );
 insert into permissao (nome ) values ('ROLE_TECNICO' );
 insert into permissao (nome ) values ('ROLE_RECEPCIONISTA' );
 
+insert into usuario_permissoes (usuario_id, permissoes_id) VALUES (1, 1);
+insert into usuario_permissoes (usuario_id, permissoes_id) VALUES (1, 2);
+
 
 select nextval( 'usuario_id_seq' );
 select nextval( 'equipamento_id_seq' );
