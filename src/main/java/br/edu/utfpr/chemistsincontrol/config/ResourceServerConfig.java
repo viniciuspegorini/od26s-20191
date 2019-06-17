@@ -15,13 +15,19 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/equipamento/**").hasAnyRole("ADMIN,USER")
-			.antMatchers("/pessoa/**").hasAnyRole("ADMIN,USER")
+			.antMatchers("/amostra/**").hasAnyRole("ADMIN","RECEPCIONISTA")
+			.antMatchers("/equipamento/**").hasAnyRole("ADMIN")
+			.antMatchers("/formulario/**").hasAnyRole("ADMIN","SOLICITANTE","RECEPCIONISTA")
+			.antMatchers("/instituicao/**").hasAnyRole("ADMIN","RECEPCIONISTA")
 			.antMatchers("/modelo/**").hasAnyRole("ADMIN")
-			.antMatchers("/instituicao/**").hasAnyRole("ADMIN,USER")
+			.antMatchers("/nota/**").hasAnyRole("ADMIN","RECEPCIONISTA")
+			.antMatchers("/pessoa/**").permitAll()
+			.antMatchers("/preco/**").hasAnyRole("ADMIN")
+			.antMatchers("/resultado/**").hasAnyRole("ADMIN","TECNICO")
 			.antMatchers("/login/**").permitAll()
 			.antMatchers("/usuario/**").permitAll()
 			.antMatchers("/user-info/**").permitAll()
 			.anyRequest().authenticated();
 	}
+
 }

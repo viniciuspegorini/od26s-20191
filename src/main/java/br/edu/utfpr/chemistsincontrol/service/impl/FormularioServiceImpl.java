@@ -1,5 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,13 @@ implements FormularioService{
 		return formularioRepository;
 	}
 
+	@Override
+	public List<Formulario> getForm() {
+		List<Formulario> forms = formularioRepository.findAllByOrderByStatus();
+		
+		return forms;
+	}
+	
+
+	
 }

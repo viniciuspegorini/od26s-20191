@@ -16,7 +16,9 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Pessoa extends AbstractModel {
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
+	private static final long serialVersionUID = 1L;
+
+	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
 
@@ -43,6 +45,10 @@ public class Pessoa extends AbstractModel {
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
     @Column(length = 100, nullable = false)
     private String status;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
+    @Column(length = 100, nullable = false)
+    private String tipoPessoa;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")

@@ -1,3 +1,4 @@
+insert into amostra (id, created_by, created_date, last_modified_by, last_modified_date, descricao, data_recebimento) values (1,'TESTE', '2019-05-21 19:10:11.484', 'TESTE', '2019-05-21 19:10:11.484', 'Amostra Teste', '2019-06-03 21:50:11.484' );
 
 
 insert into usuario (id, created_by, created_date, last_modified_by, last_modified_date, nome, password, username) values (1, null, '2019-05-21 19:10:11.484', null, '2019-05-21 19:10:11.484', 'João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', 'admin');
@@ -7,8 +8,10 @@ insert into modelo (id, created_by, created_date, last_modified_by, last_modifie
 insert into pessoa (id, created_by, created_date, last_modified_by, last_modified_date, celular, cpf_cnpj, departamento, nome, rg, status, telefone, instituicao_id, pessoa_id, usuario_id ) values (1,1, '2019-05-21 19:10:11.484', 1, '2019-05-21 19:10:11.484', '46999990000', '12345678909', 'Departamento', 'Pessoa Teste', '123456', 'Status', '4633333333', 1, null, 1 );
 insert into preco (id, created_by, created_date, last_modified_by, last_modified_date, tipo_pessoa, un_medida, valor, equipamento_id ) values (1,1, '2019-05-21 19:10:11.484', 1, '2019-05-21 19:10:11.484', 'Tipo Pessoa', 'Unidade', 10.5, 1 );
 
-insert into permissao ( nome ) values ('ROLE_ADMIN' );
-insert into permissao ( nome ) values ('ROLE_USER' );
+insert into permissao (nome ) values ('ROLE_ADMIN' );
+insert into permissao (nome ) values ('ROLE_SOLICITANTE' );
+insert into permissao (nome ) values ('ROLE_TECNICO' );
+insert into permissao (nome ) values ('ROLE_RECEPCIONISTA' );
 
 insert into usuario_permissoes( usuario_id, permissoes_id ) values ( 1, 1 );
 insert into usuario_permissoes( usuario_id, permissoes_id ) values ( 1, 2 );
