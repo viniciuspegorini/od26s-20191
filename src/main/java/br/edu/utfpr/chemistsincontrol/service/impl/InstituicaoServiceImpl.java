@@ -6,8 +6,6 @@ import br.edu.utfpr.chemistsincontrol.service.InstituicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao> implements InstituicaoService {
 

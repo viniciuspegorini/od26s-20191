@@ -88,4 +88,20 @@ public class Usuario extends AbstractModel implements UserDetails {
         return true;
     }
 
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPermissoes(Set<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
 }

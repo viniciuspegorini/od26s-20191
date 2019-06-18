@@ -2,9 +2,6 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Equipamento extends AbstractModel {
+public class Equipamento extends AbstractModel{
 	
 	 private static final long serialVersionUID = 1L;
 

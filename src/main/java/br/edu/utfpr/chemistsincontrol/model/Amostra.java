@@ -1,34 +1,41 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Entity
+@Table(name = "amostra")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Data
 public class Amostra extends AbstractModel {
 
-    @Column
+	private static final long serialVersionUID = 1L;
+
+	@Column
     private String descricao;
 
     @Column
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataRecebimento;
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Date getDataRecebimento() {
-        return dataRecebimento;
-    }
-
-    public void setDataRecebimento(Date dataRecebimento) {
-        this.dataRecebimento = dataRecebimento;
-    }
+	@ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+	private Usuario usuario;
 }

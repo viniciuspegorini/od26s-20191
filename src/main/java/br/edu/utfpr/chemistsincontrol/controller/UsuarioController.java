@@ -3,11 +3,11 @@ package br.edu.utfpr.chemistsincontrol.controller;
 import br.edu.utfpr.chemistsincontrol.model.Usuario;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("usuario")
@@ -15,12 +15,6 @@ public class UsuarioController extends CrudController<Usuario> {
 
     private UsuarioService usuarioService;
     private PasswordEncoder encoder;
-
-//    @Autowired
-//    public UsuarioController(UsuarioService service, PasswordEncoder encoder) {
-//        this.usuarioService = service;
-//        this.encoder = encoder;
-//    }
 
     @Override
     protected CrudService<Usuario> getService() {
@@ -31,7 +25,7 @@ public class UsuarioController extends CrudController<Usuario> {
     @Override
     @PostMapping
     public Usuario save(@RequestBody @Valid Usuario entity) {
-        if (entity.getId().equals(0L)) {
+        if (Optional.ofNullable(entity.getId()).orElse(0L).equals(0L)) {
             entity.setPassword(encoder.encode(entity.getPassword()));
         }
         return super.save(entity);
