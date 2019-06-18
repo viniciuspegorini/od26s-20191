@@ -31,10 +31,10 @@ public class Nota extends AbstractModel{
     @Column(length = 100, nullable = false)
     private String tipoNota;
 	
-    @NotNull(message = "Não esqueça de preencher o campo 'Pessoa'.")
+    @NotNull(message = "Não esqueça de preencher o campo 'Usuário'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-    private Pessoa pessoa;
+    private Usuario usuario;
     
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Valor'.")
     @Column(nullable = false)
