@@ -15,14 +15,14 @@ import br.edu.utfpr.chemistsincontrol.service.FormularioService;
 
 @RestController
 @RequestMapping("formulario")
-public class FormularioController extends CrudController<Formulario> {
+public class FormularioController extends CrudController<Formulario, Long> {
 
     @Autowired
     private FormularioService formularioService;
 
     @Override
     @Valid
-    protected CrudService<Formulario> getService() {
+    protected CrudService<Formulario, Long> getService() {
         return formularioService;
     }
     

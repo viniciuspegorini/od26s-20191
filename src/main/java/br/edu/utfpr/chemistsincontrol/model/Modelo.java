@@ -17,11 +17,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Modelo extends AbstractModel {
+public class Modelo {
 
-	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "--")
+    @NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String nome;
 

@@ -10,7 +10,7 @@ import br.edu.utfpr.chemistsincontrol.repository.FormularioRepository;
 import br.edu.utfpr.chemistsincontrol.service.FormularioService;
 
 @Service
-public class FormularioServiceImpl extends CrudServiceImpl<Formulario>
+public class FormularioServiceImpl extends CrudServiceImpl<Formulario, Long>
 implements FormularioService{
 
 	@Autowired

@@ -1,16 +1,12 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "preco")
@@ -18,25 +14,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Preco extends AbstractModel {
-	
-	 private static final long serialVersionUID = 1L;
+public class Preco {
 
-	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
-	    @Column(length = 45, nullable = false)
-	    private String tipoPessoa;
-	    
-	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Unidade de Medida'.")
-	    @Column(length = 45, nullable = false)
-	    private String unMedida;
-	    
-	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Valor'.")
-	    @Column(nullable = false)
-	    private Float valor;
-	    
-	    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Equipamento'.")
-		@ManyToOne
-		@JoinColumn(referencedColumnName = "id")
-	    private Equipamento equipamento;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
+    @Column(length = 45, nullable = false)
+    private String tipoPessoa;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Unidade de Medida'.")
+    @Column(length = 45, nullable = false)
+    private String unMedida;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Valor'.")
+    @Column(nullable = false)
+    private Float valor;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Equipamento'.")
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Equipamento equipamento;
 
 }

@@ -1,6 +1,5 @@
 package br.edu.utfpr.chemistsincontrol.controller;
 
-import br.edu.utfpr.chemistsincontrol.model.AbstractModel;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,11 +7,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class  CrudController<T extends AbstractModel> {
+public abstract class CrudController<T, ID extends Serializable> {
 
-    protected abstract CrudService<T> getService();
+    protected abstract CrudService<T, ID> getService();
 
     @GetMapping
     public List<T> findAll() {
@@ -32,7 +32,7 @@ public abstract class  CrudController<T extends AbstractModel> {
     }
 
     @GetMapping("{id}")
-    public T findOne(@PathVariable Long id) {
+    public T findOne(@PathVariable ID id) {
         return getService().findOne(id);
     }
 
@@ -42,7 +42,7 @@ public abstract class  CrudController<T extends AbstractModel> {
     }
 
     @GetMapping("exists/{id}")
-    public boolean exists(@PathVariable Long id) {
+    public boolean exists(@PathVariable ID id) {
         return getService().exists(id);
     }
 
@@ -52,7 +52,7 @@ public abstract class  CrudController<T extends AbstractModel> {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable ID id) {
         getService().delete(id);
     }
 

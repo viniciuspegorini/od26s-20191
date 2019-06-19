@@ -11,13 +11,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("usuario")
-public class UsuarioController extends CrudController<Usuario> {
+public class UsuarioController extends CrudController<Usuario, Long> {
 
     private UsuarioService usuarioService;
     private PasswordEncoder encoder;
 
     @Override
-    protected CrudService<Usuario> getService() {
+    protected CrudService<Usuario, Long> getService() {
         return this.usuarioService;
     }
 
