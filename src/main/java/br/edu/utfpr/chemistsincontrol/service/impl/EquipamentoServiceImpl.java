@@ -8,7 +8,7 @@ import br.edu.utfpr.chemistsincontrol.repository.EquipamentoRepository;
 import br.edu.utfpr.chemistsincontrol.service.EquipamentoService;
 
 @Service
-public class EquipamentoServiceImpl extends CrudServiceImpl<Equipamento>
+public class EquipamentoServiceImpl extends CrudServiceImpl<Equipamento, Long>
 implements EquipamentoService{
 
 	@Autowired
