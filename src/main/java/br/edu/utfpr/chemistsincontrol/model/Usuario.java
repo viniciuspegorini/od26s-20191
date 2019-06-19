@@ -1,8 +1,8 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,6 +40,7 @@ public class Usuario extends AbstractModel implements UserDetails {
         return auto;
     }
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     public Set<Permissao> getPermissoes() {
         return permissoes;
     }

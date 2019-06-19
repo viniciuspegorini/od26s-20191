@@ -2,6 +2,7 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 /*Glauber*/
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,8 +35,10 @@ public class Modelo extends AbstractModel {
     @NotNull(message = "--")
     @Column(nullable = false)
     private String resultado;
-    
+
+    @NotNull(message = "--")
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(referencedColumnName = "id")
     private Preco preco;
 

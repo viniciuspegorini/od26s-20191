@@ -19,4 +19,9 @@ public class ModeloServiceImpl extends CrudServiceImpl<Modelo> implements Modelo
     protected ModeloRepository getRepository() {
         return this.repository;
     }
+
+    @Override
+    public Modelo findByPrecoEquipamentoId(long id){
+        return repository.findByPrecoEquipamentoId(id);
+    }
 }

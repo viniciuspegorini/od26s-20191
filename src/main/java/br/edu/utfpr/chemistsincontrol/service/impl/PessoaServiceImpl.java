@@ -17,4 +17,10 @@ implements PessoaService {
 	protected PessoaRepository getRepository() {
 		return pessoaRepository;
 	}
+
+	@Override
+	public Pessoa findByUsuarioId(Long Id){
+		return pessoaRepository.findByUsuarioId(Id);
+	}
+
 }
