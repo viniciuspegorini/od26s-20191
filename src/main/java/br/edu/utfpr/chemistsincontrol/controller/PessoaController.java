@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("pessoa")
-public class PessoaController extends CrudController<Pessoa> {
+public class PessoaController extends CrudController<Pessoa, Long> {
 
     @Autowired
     private PessoaService pessoaService;
@@ -21,7 +21,7 @@ public class PessoaController extends CrudController<Pessoa> {
     }
 
     @Override
-    protected CrudService<Pessoa> getService() {
+    protected CrudService<Pessoa, Long> getService() {
         return pessoaService;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PessoaServiceImpl extends CrudServiceImpl<Pessoa>
+public class PessoaServiceImpl extends CrudServiceImpl<Pessoa, Long>
 implements PessoaService {
 
 	@Autowired

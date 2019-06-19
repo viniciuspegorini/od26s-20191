@@ -1,18 +1,13 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "resultado")
@@ -20,25 +15,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Resultado extends AbstractModel {
+public class Resultado {
 
-	@Column(nullable = false)
-	private byte[] arquivo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
-	@Column(length = 45, nullable = false)
-	private String usuario;
+    @Column(nullable = false)
+    private byte[] arquivo;
 
-	// @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
-	@Column(nullable = false)
-	private Date dtAlteracao;
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
+    @Column(length = 45, nullable = false)
+    private String usuario;
 
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Formulario formulario;
+    // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
+    @Column(nullable = false)
+    private Date dtAlteracao;
 
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
-	@Column(length = 255, nullable = false)
-	private String laudo;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Formulario formulario;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
+    @Column(length = 255, nullable = false)
+    private String laudo;
 
 }

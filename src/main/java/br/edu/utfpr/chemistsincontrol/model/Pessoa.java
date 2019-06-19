@@ -14,11 +14,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Pessoa extends AbstractModel {
+public class Pessoa {
 
-	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
 

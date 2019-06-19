@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao> implements InstituicaoService {
+public class InstituicaoServiceImpl extends CrudServiceImpl<Instituicao, Long> implements InstituicaoService {
 
 
     private InstituicaoRepository repository;

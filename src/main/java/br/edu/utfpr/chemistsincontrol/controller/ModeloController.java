@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("modelo")
-public class ModeloController extends CrudController<Modelo> {
+public class ModeloController extends CrudController<Modelo, Long> {
 
 
     private ModeloService modeloService;
@@ -19,7 +19,7 @@ public class ModeloController extends CrudController<Modelo> {
     public ModeloController (ModeloService service) {this.modeloService = service;}
 
     @Override
-    protected CrudService<Modelo> getService() {
+    protected CrudService<Modelo, Long> getService() {
         return modeloService;
     }
 

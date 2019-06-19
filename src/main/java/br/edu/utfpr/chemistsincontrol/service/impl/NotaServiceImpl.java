@@ -8,7 +8,7 @@ import br.edu.utfpr.chemistsincontrol.repository.NotaRepository;
 import br.edu.utfpr.chemistsincontrol.service.NotaService;
 
 @Service
-public class NotaServiceImpl extends CrudServiceImpl<Nota> implements NotaService {
+public class NotaServiceImpl extends CrudServiceImpl<Nota, Long> implements NotaService {
 
     private NotaRepository repository;
     @Autowired

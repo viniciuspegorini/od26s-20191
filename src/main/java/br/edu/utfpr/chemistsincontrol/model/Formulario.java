@@ -1,17 +1,12 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "formulario")
@@ -19,49 +14,53 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Formulario extends AbstractModel{
-	
-	@ManyToOne
+public class Formulario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-	private Pessoa pessoa;
-	
-	@ManyToOne
+    private Pessoa pessoa;
+
+    @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-	private Nota nota;
-	
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
+    private Nota nota;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
     @Column(length = 45, nullable = false)
-	private String status;
-	
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
+    private String status;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
     @Column(length = 255, nullable = false)
-	private String metodologiaAmostra;
-	
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Analitica'.")
+    private String metodologiaAmostra;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Analitica'.")
     @Column(length = 255, nullable = false)
-	private String metodologiaAnalitica;
-	
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
+    private String metodologiaAnalitica;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
     @Column(length = 45, nullable = false)
-	private String departamento;
-	
-	@ManyToOne
+    private String departamento;
+
+    @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-	private Amostra amostra;
-		
-	@ManyToOne
+    private Amostra amostra;
+
+    @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-	private Modelo modelo;
-		
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Quantidade de ensaiso'.")
+    private Modelo modelo;
+
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Quantidade de ensaiso'.")
     @Column(nullable = false)
-	private Float quantidadeEnsaios;
-	
-	@Column
-	private Float valor;
-	
-	@Transient
-	private Float valorTotal;
-	//calcular em execução considerando valor e tipo de pessoa
+    private Float quantidadeEnsaios;
+
+    @Column
+    private Float valor;
+
+    @Transient
+    private Float valorTotal;
+    //calcular em execução considerando valor e tipo de pessoa
 
 }

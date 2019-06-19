@@ -10,7 +10,7 @@ import br.edu.utfpr.chemistsincontrol.service.NotaService;
 
 @RestController
 @RequestMapping("nota")
-public class NotaController extends CrudController<Nota> {
+public class NotaController extends CrudController<Nota, Long> {
 
 
     private NotaService notaService;
@@ -19,7 +19,7 @@ public class NotaController extends CrudController<Nota> {
     public NotaController (NotaService service) {this.notaService = service;}
 
     @Override
-    protected CrudService<Nota> getService() {
+    protected CrudService<Nota, Long> getService() {
         return notaService;
     }
 

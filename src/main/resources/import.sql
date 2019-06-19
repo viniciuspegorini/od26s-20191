@@ -1,7 +1,7 @@
 
 
 
-insert into usuario (id, created_by, created_date, last_modified_by, last_modified_date, nome, password, username) values (1, null, '2019-05-21 19:10:11.484', null, '2019-05-21 19:10:11.484', 'João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', 'admin');
+insert into usuario (nome, password, email) values ('João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', 'admin@admin.com');
 insert into equipamento (id, created_by, created_date, last_modified_by, last_modified_date, nome ) values (1,1, '2019-05-21 19:10:11.484', 1, '2019-05-21 19:10:11.484', 'Equipamento Teste' );
 insert into instituicao (id, created_by, created_date, last_modified_by, last_modified_date, cnpj, nome_fantasia, razao_social ) values (1,1, '2019-05-21 19:10:11.484', 1, '2019-05-21 19:10:11.484', '12345678000195', 'Instituição Teste', 'Instituição Teste LTDA' );
 insert into modelo (id, created_by, created_date, last_modified_by, last_modified_date, nome, metodologia, resultado ) values (1,1, '2019-05-21 19:10:11.484', 1, '2019-05-21 19:10:11.484', 'Modelo teste', 'Texto do Modelo Teste', 'Resultado do Modelo Teste' );

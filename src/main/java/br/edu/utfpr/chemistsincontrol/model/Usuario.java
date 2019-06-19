@@ -12,16 +12,20 @@ import java.util.*;
 
 @Entity
 @Data
-public class Usuario extends AbstractModel implements UserDetails {
+public class Usuario implements UserDetails {
     private static final long serialVersionUID = 1L;
     private static final BCryptPasswordEncoder bCrypt =
             new BCryptPasswordEncoder(10);
 
-    @Column(length = 100, nullable = false)
-    private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 100, nullable = false)
-    private String username;
+    private String email;
+
+    @Column(length = 100, nullable = false)
+    private String nome;
 
     @Column(length = 512, nullable = false)
     private String password;
@@ -44,6 +48,10 @@ public class Usuario extends AbstractModel implements UserDetails {
         return permissoes;
     }
 
+    public void setPermissoes(Set<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+
     public void addPermissao(Permissao permissao) {
         if (permissoes == null) {
             permissoes = new HashSet<>();
@@ -63,9 +71,13 @@ public class Usuario extends AbstractModel implements UserDetails {
         return this.password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
@@ -88,20 +100,4 @@ public class Usuario extends AbstractModel implements UserDetails {
         return true;
     }
 
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setPermissoes(Set<Permissao> permissoes) {
-        this.permissoes = permissoes;
-    }
 }
