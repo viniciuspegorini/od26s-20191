@@ -1,12 +1,17 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "formulario")
@@ -14,53 +19,43 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Formulario {
+public class Formulario extends AbstractModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Pessoa pessoa;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Pessoa pessoa;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Nota nota;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Nota nota;
+	@NotNull
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Modelo modelo;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
-    @Column(length = 45, nullable = false)
-    private String status;
+//	@NotEmpty(message="Não esqueça de preencher a metodologia")
+	@Column(length = 255)
+	private String metodologia;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
-    @Column(length = 255, nullable = false)
-    private String metodologiaAmostra;
+	@NotNull(message="Não esqueça selecionar a natureza de operação")
+	@Column(length = 255)
+	private String naturezaOperacao;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Analitica'.")
-    @Column(length = 255, nullable = false)
-    private String metodologiaAnalitica;
+	@Column(length = 45)
+	private String departamento;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
-    @Column(length = 45, nullable = false)
-    private String departamento;
+	@Column
+	private Double quantidade_ensaios;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Amostra amostra;
+	@Column
+	private Double valor_total;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Modelo modelo;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Amostra amostra;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Quantidade de ensaiso'.")
-    @Column(nullable = false)
-    private Float quantidadeEnsaios;
-
-    @Column
-    private Float valor;
-
-    @Transient
-    private Float valorTotal;
-    //calcular em execução considerando valor e tipo de pessoa
-
+	@NotNull(message = "Status não foi preenchido")
+	@Column(length = 45, nullable = false)
+	private String status;
 }

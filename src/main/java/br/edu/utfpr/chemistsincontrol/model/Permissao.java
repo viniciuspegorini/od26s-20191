@@ -1,5 +1,6 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ public class Permissao implements GrantedAuthority {
     private String nome;
 
     @Override
+    @JsonIgnore
     public String getAuthority() {
         return this.nome;
     }
