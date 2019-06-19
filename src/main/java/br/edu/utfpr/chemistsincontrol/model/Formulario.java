@@ -23,7 +23,7 @@ public class Formulario extends AbstractModel{
 	
 	@ManyToOne
     @JoinColumn(referencedColumnName = "id")
-	private Pessoa pessoa;
+	private Usuario usuario;
 	
 	@ManyToOne
     @JoinColumn(referencedColumnName = "id")
