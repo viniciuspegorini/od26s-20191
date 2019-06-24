@@ -12,14 +12,14 @@ import br.edu.utfpr.chemistsincontrol.service.EquipamentoService;
 
 @RestController
 @RequestMapping("equipamento")
-public class EquipamentoController extends CrudController<Equipamento> {
+public class EquipamentoController extends CrudController<Equipamento, Long> {
 
     @Autowired
     private EquipamentoService equipamentoService;
 
     @Override
     @Valid
-    protected CrudService<Equipamento> getService() {
+    protected CrudService<Equipamento, Long> getService() {
         return equipamentoService;
     }
 }

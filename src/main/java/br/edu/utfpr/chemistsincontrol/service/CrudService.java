@@ -1,13 +1,13 @@
 package br.edu.utfpr.chemistsincontrol.service;
 
-import br.edu.utfpr.chemistsincontrol.model.AbstractModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CrudService<T extends AbstractModel> {
+public interface CrudService<T, ID extends Serializable> {
 
     List<T> findAll();
 
@@ -23,13 +23,13 @@ public interface CrudService<T extends AbstractModel> {
 
     void flush();
 
-    T findOne(Long id);
+    T findOne(ID id);
 
-    boolean exists(Long id);
+    boolean exists(ID id);
 
     long count();
 
-    void delete(Long id);
+    void delete(ID id);
 
     void delete(T entity);
 

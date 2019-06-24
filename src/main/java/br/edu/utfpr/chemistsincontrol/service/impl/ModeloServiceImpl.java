@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ModeloServiceImpl extends CrudServiceImpl<Modelo> implements ModeloService {
+public class ModeloServiceImpl extends CrudServiceImpl<Modelo, Long> implements ModeloService {
 
     private ModeloRepository repository;
     @Autowired
@@ -18,5 +18,10 @@ public class ModeloServiceImpl extends CrudServiceImpl<Modelo> implements Modelo
     @Override
     protected ModeloRepository getRepository() {
         return this.repository;
+    }
+
+    @Override
+    public Modelo findByPrecoEquipamentoId(long id){
+        return repository.findByPrecoEquipamentoId(id);
     }
 }

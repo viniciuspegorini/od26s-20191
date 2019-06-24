@@ -1,18 +1,16 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.util.*;
 
 @Entity
@@ -20,42 +18,47 @@ import java.util.*;
 @Table(name = "usuario")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario extends AbstractModel implements UserDetails {
+public class Usuario implements UserDetails {
     private static final long serialVersionUID = 1L;
     private static final BCryptPasswordEncoder bCrypt =
             new BCryptPasswordEncoder(10);
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(length = 100, nullable = false)
+    private String email;
 
     @ManyToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     private Set<Permissao> permissoes;        
     
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
 
-    @NotNull(message = "Não esqueça de preencher o campo 'CPF'.")
+    @NotNull(message = "N�o esque�a de preencher o campo 'CPF'.")
     @Column(length = 14, nullable = false)
     private String cpfCnpj;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'RG'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'RG'.")
     @Column(length = 100, nullable = false)
     private String rg;
     
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Telefone'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Telefone'.")
     @Column(length = 100, nullable = false)
     private String telefone;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Celular'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Celular'.")
     @Column(length = 100, nullable = false)
     private String celular;
     
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Tipo Pessoa'.")
     @Column(length = 100, nullable = false)
     private String tipoPessoa;
     
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Departamento'.")
     @Column(length = 100, nullable = false)
     private String departamento;
 
@@ -63,7 +66,7 @@ public class Usuario extends AbstractModel implements UserDetails {
     @JoinColumn(referencedColumnName = "id")
     private Instituicao instituicao;
     
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
+    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Status'.")
     @Column(length = 100, nullable = false)
     private String status;
         
@@ -92,9 +95,12 @@ public class Usuario extends AbstractModel implements UserDetails {
         return auto;
     }
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     public Set<Permissao> getPermissoes() {
         return permissoes;
     }
+
+
 
     public void addPermissao(Permissao permissao) {
         if (permissoes == null) {
@@ -115,9 +121,11 @@ public class Usuario extends AbstractModel implements UserDetails {
         return this.password;
     }
 
+
+
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override

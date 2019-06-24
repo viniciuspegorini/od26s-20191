@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("amostra")
-public class AmostraController extends CrudController<Amostra> {
+public class AmostraController extends CrudController<Amostra, Long> {
 
     @Autowired
     private AmostraService service;
 
     @Override
-    protected CrudService<Amostra> getService() {
+    protected CrudService<Amostra, Long> getService() {
         return this.service;
     }
 }

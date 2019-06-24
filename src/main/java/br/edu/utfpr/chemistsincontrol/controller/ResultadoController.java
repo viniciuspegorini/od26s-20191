@@ -12,14 +12,14 @@ import br.edu.utfpr.chemistsincontrol.service.ResultadoService;
 
 @RestController
 @RequestMapping("resultado")
-public class ResultadoController  extends CrudController<Resultado> {
+public class ResultadoController  extends CrudController<Resultado, Long> {
 
 	@Autowired
 	private ResultadoService resultadoService;
 	
 	@Override
 	@Valid
-	protected CrudService<Resultado> getService() {
+	protected CrudService<Resultado, Long> getService() {
 		return resultadoService;
 	}
 }

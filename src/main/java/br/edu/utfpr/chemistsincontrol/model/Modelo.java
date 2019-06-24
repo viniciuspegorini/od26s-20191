@@ -2,6 +2,7 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 /*Glauber*/
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,11 +18,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Modelo extends AbstractModel {
+public class Modelo {
 
-	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "--")
+    @NotNull(message = "--")
     @Column(length = 50, nullable = false)
     private String nome;
 
@@ -34,8 +37,10 @@ public class Modelo extends AbstractModel {
     @NotNull(message = "--")
     @Column(nullable = false)
     private String resultado;
-    
+
+    @NotNull(message = "--")
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(referencedColumnName = "id")
     private Preco preco;
 
