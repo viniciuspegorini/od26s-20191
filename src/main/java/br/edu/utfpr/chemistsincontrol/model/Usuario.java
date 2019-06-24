@@ -2,15 +2,19 @@ package br.edu.utfpr.chemistsincontrol.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.NotNull;
+
 import java.util.*;
 
 @Entity
@@ -26,6 +30,7 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Column(length = 100, nullable = false)
     private String email;
@@ -77,14 +82,15 @@ public class Usuario implements UserDetails {
     private Date dtCriacao;
     
     @Column(length = 100, nullable = false)
-    private String username;
+    private String nome;
 
     @Column(length = 512, nullable = false)
     private String password;
-    
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Usuario orientador;
+
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    private Set<Permissao> permissoes;
+
 
     @Override
     @JsonIgnore
@@ -99,6 +105,8 @@ public class Usuario implements UserDetails {
     public Set<Permissao> getPermissoes() {
         return permissoes;
     }
+
+
 
 
 
@@ -148,19 +156,4 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setPermissoes(Set<Permissao> permissoes) {
-        this.permissoes = permissoes;
-    }
 }

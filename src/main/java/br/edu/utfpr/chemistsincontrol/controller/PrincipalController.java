@@ -21,10 +21,12 @@ public class PrincipalController {
 		return principal;
 	}
 
+
 	@GetMapping("logged-user")
 	public Usuario getUser(Principal principal){
 		if(principal != null){
 			return usuarioRepository.findByEmail(principal.getName()).orElse(new Usuario());
+
 
 		}
 		else {
