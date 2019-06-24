@@ -34,31 +34,31 @@ public class Usuario implements UserDetails {
             fetch = FetchType.EAGER)
     private Set<Permissao> permissoes;        
     
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Nome'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
 
-    @NotNull(message = "N�o esque�a de preencher o campo 'CPF'.")
+    @NotNull(message = "Não esqueça de preencher o campo 'CPF'.")
     @Column(length = 14, nullable = false)
     private String cpfCnpj;
 
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'RG'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'RG'.")
     @Column(length = 100, nullable = false)
     private String rg;
     
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Telefone'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Telefone'.")
     @Column(length = 100, nullable = false)
     private String telefone;
 
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Celular'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Celular'.")
     @Column(length = 100, nullable = false)
     private String celular;
     
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Tipo Pessoa'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
     @Column(length = 100, nullable = false)
     private String tipoPessoa;
     
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Departamento'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
     @Column(length = 100, nullable = false)
     private String departamento;
 
@@ -66,7 +66,7 @@ public class Usuario implements UserDetails {
     @JoinColumn(referencedColumnName = "id")
     private Instituicao instituicao;
     
-    @NotNull(message = "Opa!! N�o esque�a de preencher o campo 'Status'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
     @Column(length = 100, nullable = false)
     private String status;
         
