@@ -14,25 +14,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
+
 public class Formulario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-	private Usuario usuario;
-	
+	@JoinColumn(referencedColumnName = "id")
+	private Pessoa pessoa;
+
 	@ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id")
 	private Nota nota;
+
 
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Modelo modelo;
 
-	//	@NotEmpty(message="Não esqueça de preencher a metodologia")
+
 	@Column(length = 255)
 	private String metodologia;
 
@@ -40,8 +42,10 @@ public class Formulario {
 	@Column(length = 255)
 	private String naturezaOperacao;
 
+
 	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
 	@Column(length = 45, nullable = false)
+
 	private String departamento;
 
 	@Column
@@ -54,8 +58,8 @@ public class Formulario {
     @JoinColumn(referencedColumnName = "id")
 	private Amostra amostra;
 
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Metodologia Amostra'.")
+	@NotNull(message = "Status não foi preenchido")
 	@Column(length = 45, nullable = false)
 	private String status;
-		
+
 }
