@@ -81,15 +81,11 @@ public class Usuario implements UserDetails {
     @Column()
     private Date dtCriacao;
     
-    @Column(length = 100, nullable = false)
-    private String nome;
+
 
     @Column(length = 512, nullable = false)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    private Set<Permissao> permissoes;
 
 
     @Override
