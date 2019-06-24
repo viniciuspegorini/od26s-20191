@@ -1,11 +1,6 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Data
-public class Formulario extends AbstractModel{
+
+public class Formulario {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -29,12 +29,12 @@ public class Formulario extends AbstractModel{
 	@JoinColumn(referencedColumnName = "id")
 	private Nota nota;
 
-	@NotNull
+
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Modelo modelo;
 
-//	@NotEmpty(message="Não esqueça de preencher a metodologia")
+
 	@Column(length = 255)
 	private String metodologia;
 
@@ -42,7 +42,10 @@ public class Formulario extends AbstractModel{
 	@Column(length = 255)
 	private String naturezaOperacao;
 
-	@Column(length = 45)
+
+	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
+	@Column(length = 45, nullable = false)
+
 	private String departamento;
 
 	@Column
@@ -50,12 +53,13 @@ public class Formulario extends AbstractModel{
 
 	@Column
 	private Double valor_total;
-
+	
 	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
 	private Amostra amostra;
 
 	@NotNull(message = "Status não foi preenchido")
 	@Column(length = 45, nullable = false)
 	private String status;
+
 }
