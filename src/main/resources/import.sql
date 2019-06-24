@@ -1,4 +1,4 @@
-INSERT INTO usuario(celular, cpf_cnpj, departamento, dt_criacao, email, nome, password, rg, saldo, status, telefone, tipo_pessoa, username, instituicao_id, orientador_id) VALUES ('9999-9999', '12345678909', 'depto', CURRENT_DATE, 'admin@admin.com', 'João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', '1234', 0.0, 'STATS', 'aa', 'aa', 'aa', null, null);
+INSERT INTO usuario(celular, cpf_cnpj, departamento, dt_criacao, email, nome, password, rg, saldo, status, telefone, tipo_pessoa, instituicao_id, orientador_id) VALUES ('9999-9999', '12345678909', 'depto', CURRENT_DATE, 'admin@admin.com', 'João da Silva', '$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', '1234', 0.0, 'STATS', 'aa', 'aa', null, null);
 
 insert into equipamento (nome) values ('Equipamento Teste');
 insert into instituicao (cnpj, nome_fantasia, razao_social) values ('12345678000195', 'Instituição Teste', 'Instituição Teste LTDA');

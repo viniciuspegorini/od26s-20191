@@ -80,8 +80,10 @@ public class Usuario implements UserDetails {
     
     @Column()
     private Date dtCriacao;
-    
 
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Usuario orientador;
 
     @Column(length = 512, nullable = false)
     private String password;
