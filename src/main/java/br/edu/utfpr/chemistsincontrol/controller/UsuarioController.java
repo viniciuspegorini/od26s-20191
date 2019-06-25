@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UsuarioController extends CrudController<Usuario, Long> {
     @Autowired
     private UsuarioService usuarioService;
-    Autowired
+    @Autowired
     private PasswordEncoder encoder;
 
     @Override
