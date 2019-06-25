@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -40,7 +41,7 @@ public class Modelo {
 
     @NotNull(message = "--")
     @ManyToOne
-    @JsonIgnore
+    @JsonDeserialize
     @JoinColumn(referencedColumnName = "id")
     private Preco preco;
 
