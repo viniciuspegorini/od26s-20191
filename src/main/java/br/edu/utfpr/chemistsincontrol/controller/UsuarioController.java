@@ -3,6 +3,7 @@ package br.edu.utfpr.chemistsincontrol.controller;
 import br.edu.utfpr.chemistsincontrol.model.Usuario;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +13,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("usuario")
 public class UsuarioController extends CrudController<Usuario, Long> {
-
+    @Autowired
     private UsuarioService usuarioService;
+    Autowired
     private PasswordEncoder encoder;
 
     @Override
