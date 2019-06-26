@@ -1,6 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -38,27 +39,21 @@ public class Formulario {
 	@Column(length = 255)
 	private String metodologia;
 
-	@NotNull(message="Não esqueça selecionar a natureza de operação")
+	@NotEmpty(message="Não esqueça selecionar a natureza de operação")
 	@Column(length = 255)
 	private String naturezaOperacao;
 
-
-	@NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
-	@Column(length = 45, nullable = false)
-
-	private String departamento;
+	@Column
+	private Double quantidadeEnsaios;
 
 	@Column
-	private Double quantidade_ensaios;
-
-	@Column
-	private Double valor_total;
+	private Double valorTotal;
 	
 	@ManyToOne
     @JoinColumn(referencedColumnName = "id")
 	private Amostra amostra;
 
-	@NotNull(message = "Status não foi preenchido")
+	@NotEmpty(message = "Status não foi preenchido")
 	@Column(length = 45, nullable = false)
 	private String status;
 
