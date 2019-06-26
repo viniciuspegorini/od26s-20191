@@ -17,10 +17,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/amostra/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                .antMatchers("/equipamento/**").hasAnyRole("ADMIN")
+                .antMatchers("/equipamento/**").hasAnyRole("ADMIN", "SOLICITANTE")
                 .antMatchers("/formulario/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
                 .antMatchers("/instituicao/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                .antMatchers("/modelo/**").hasAnyRole("ADMIN")
+                .antMatchers("/modelo/**").hasAnyRole("ADMIN", "SOLICITANTE" )
                 .antMatchers("/nota/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
                 .antMatchers("/preco/**").hasAnyRole("ADMIN")
                 .antMatchers("/resultado/**").hasAnyRole("ADMIN", "TECNICO")
