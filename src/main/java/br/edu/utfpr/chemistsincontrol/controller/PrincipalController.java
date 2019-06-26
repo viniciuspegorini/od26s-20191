@@ -26,8 +26,6 @@ public class PrincipalController {
 	public Usuario getUser(Principal principal){
 		if(principal != null){
 			return usuarioRepository.findByEmail(principal.getName()).orElse(new Usuario());
-
-
 		}
 		else {
 			return new Usuario();
