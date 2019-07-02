@@ -8,6 +8,10 @@ insert into modelo (nome, metodologia, resultado, preco_id) values ('Modelo test
 
 insert into amostra (descricao, data_recebimento, usuario_id) values ('Amostra Teste', '2019-06-03 21:50:11.484', 1);
 
+INSERT INTO nota( anexo, data_emissao, numero, tipo_nota, valor, usuario_id) VALUES ( '123', '2019-06-03 21:50:11.484' , '123', 'entrada' , 100.00 , '1');
+
+INSERT INTO formulario(metodologia, natureza_operacao, quantidade_ensaios, status, valor_total, amostra_id, modelo_id, nota_id, usuario_id) VALUES ( 'teste', 'teste', '5', 'teste', '10', 1 , 1 , 1, 1);
+
 
 insert into permissao (nome) values ('ROLE_ADMIN');
 insert into permissao (nome) values ('ROLE_SOLICITANTE');
