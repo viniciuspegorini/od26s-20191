@@ -1,10 +1,12 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,17 +25,16 @@ public class Resultado {
     private Long id;
 
     @Lob
-    private byte[] arquivo;
+    private MultipartFile arquivo;
 
 //    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
 //    @Column(length = 45, nullable = false)
-    private String usuario;
+    private Usuario usuario;
 
-    @Column
-    private String extensao;
-
-    // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
+     // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
 //    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dtAlteracao;
 
     @ManyToOne
@@ -42,6 +43,8 @@ public class Resultado {
 
 //    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
 //    @Column(length = 255, nullable = false)
-    private String laudo;
+    @Lob
+    private Arquivo laudo;
+
 
 }

@@ -28,7 +28,7 @@ public class Instituicao {
     @Column(length = 50, nullable = false)
     private String nomeFantasia;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'CPF'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'CPF/CNPJ'.")
     @Column(length = 14, nullable = false)
     private String cnpj;
 
