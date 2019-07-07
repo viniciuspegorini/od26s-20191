@@ -31,14 +31,6 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(length = 100, nullable = false)
-    private String email;
-
-    @ManyToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    private Set<Permissao> permissoes;        
-    
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Nome'.")
     @Column(length = 100, nullable = false)
     private String nome;
@@ -50,7 +42,7 @@ public class Usuario implements UserDetails {
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'RG'.")
     @Column(length = 100, nullable = false)
     private String rg;
-    
+
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Telefone'.")
     @Column(length = 100, nullable = false)
     private String telefone;
@@ -58,37 +50,52 @@ public class Usuario implements UserDetails {
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Celular'.")
     @Column(length = 100, nullable = false)
     private String celular;
-    
+
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
     @Column(length = 100, nullable = false)
     private String tipoPessoa;
-    
+
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
     @Column(length = 100, nullable = false)
     private String departamento;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Instituicao instituicao;
-    
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
     @Column(length = 100, nullable = false)
     private String status;
-        
-    @Column(nullable = false, columnDefinition="FLOAT DEFAULT 0")
-    private Float saldo;
-    
-    @Column()
-    private Date dtCriacao;
 
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Usuario orientador;
+    @Column(length = 100, nullable = false)
+    private String email;
+
+    @Column(columnDefinition="FLOAT DEFAULT 0")
+    private Float saldo;
+
+
+    private Date dtCriacao;
 
     @Column(length = 512, nullable = false)
     private String password;
 
 
+    @Column(nullable = false)
+    private String endereco;
+
+
+    @Column(length = 100, nullable = false)
+    private String cidade;
+
+    @Column(length = 30, nullable = false)
+    private String uf;
+
+    @Column(length = 20)
+    private String cep;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Instituicao instituicao;
+
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Usuario orientador;
 
     @Override
     @JsonIgnore
@@ -99,13 +106,15 @@ public class Usuario implements UserDetails {
         return auto;
     }
 
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    private Set<Permissao> permissoes;
+
+
     @com.fasterxml.jackson.annotation.JsonIgnore
     public Set<Permissao> getPermissoes() {
         return permissoes;
     }
-
-
-
 
 
     public void addPermissao(Permissao permissao) {
