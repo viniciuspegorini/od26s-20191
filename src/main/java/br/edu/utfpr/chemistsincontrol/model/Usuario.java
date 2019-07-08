@@ -50,12 +50,13 @@ public class Usuario implements UserDetails {
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Celular'.")
     @Column(length = 100, nullable = false)
     private String celular;
-    
+
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Tipo Pessoa'.")
     @Column(length = 100, nullable = false)
     private String tipoPessoa;
 
-    @Column(length = 100, nullable = true)
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
+    @Column(length = 100, nullable = false)
     private String departamento;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
@@ -68,14 +69,25 @@ public class Usuario implements UserDetails {
     @Column(columnDefinition="FLOAT DEFAULT 0")
     private Float saldo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
-    private SituacaoCadastro situacaoCadastro;
 
     private Date dtCriacao;
 
     @Column(length = 512, nullable = false)
     private String password;
+
+
+    @Column(nullable = false)
+    private String endereco;
+
+
+    @Column(length = 100, nullable = false)
+    private String cidade;
+
+    @Column(length = 30, nullable = false)
+    private String uf;
+
+    @Column(length = 20)
+    private String cep;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
@@ -84,6 +96,10 @@ public class Usuario implements UserDetails {
     @OneToOne
     @JoinColumn(referencedColumnName = "id")
     private Usuario orientador;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private SituacaoCadastro situacaoCadastro;
 
     @Override
     @JsonIgnore
@@ -150,5 +166,8 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+
 
 }
