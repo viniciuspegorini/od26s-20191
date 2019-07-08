@@ -1,6 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.util.mail;
 
 
+import br.edu.utfpr.chemistsincontrol.model.Arquivo;
 import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
@@ -66,6 +67,7 @@ public class MailSender {
             file = file.replace("\n", "");
             if (new File(file).exists()) {
                 bodyPart = new MimeBodyPart();
+
                 DataSource ds = new FileDataSource(file);
                 bodyPart.setDataHandler(new DataHandler(ds));
                 bodyPart.setFileName(new File(file).getName());
