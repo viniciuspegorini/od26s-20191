@@ -21,16 +21,16 @@ public class Resultado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private byte[] arquivo;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
     @Column(length = 45, nullable = false)
-    private String usuario;
+    private Usuario usuario;
 
     // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
     @Column(nullable = false)
-    private Date dtAlteracao;
+    private Date today;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")

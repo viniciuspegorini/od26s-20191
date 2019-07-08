@@ -32,7 +32,7 @@ public class ResultadoController  extends CrudController<Resultado, Long> {
 		return resultadoService;
 	}
 
-	@GetMapping( value = "/file-manager/download/{id}" )
+	@GetMapping( value = "/download/{id}" )
 	public ResponseEntity<Resource> downloadFile(@PathVariable( "id" ) Long id ) {
 		Arquivo arquivo = null;//getService().getField( id, fieldName );
 		if ( arquivo != null ) {
@@ -47,8 +47,8 @@ public class ResultadoController  extends CrudController<Resultado, Long> {
 		}
 	}
 
-	@PostMapping( "/file-manager/upload/{id}" )
-	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file, @PathVariable( "id" ) Long id ) {
+	@PostMapping( "/upload" )
+	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file ) {
 		Optional<Resultado> optional = Optional.ofNullable( null );//getRepository().findById( id );
 		if ( optional.isPresent() ) {
 			try {
