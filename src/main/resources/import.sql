@@ -33,6 +33,7 @@ INSERT INTO nota(id, anexo, data_emissao, numero, tipo_nota, valor,usuario_id)	V
 INSERT INTO nota(id, anexo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (5, '/nota/nfe2.pdf','2019-07-03 19:10:25-07', '000000005', 'D', '1200', '1');
 INSERT INTO nota(id, anexo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (6, '/nota/nfe2.pdf','2019-07-04 19:10:25-07', '000000006', 'C', '2500' , '1');
 
+INSERT INTO formulario(metodologia, natureza_operacao, quantidade_ensaios, status, valor_total, amostra_id, modelo_id, nota_id, usuario_id)	VALUES ( 'METODOLOGIA_TESTE', 'NATUREZA_TESTE', 1 , 'TESTE', 100.00 , 1 , 1 , 1 , 1 );
 
 
 
