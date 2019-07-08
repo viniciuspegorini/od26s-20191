@@ -97,6 +97,10 @@ public class Usuario implements UserDetails {
     @JoinColumn(referencedColumnName = "id")
     private Usuario orientador;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private SituacaoCadastro situacaoCadastro;
+
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -162,5 +166,8 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+
 
 }
