@@ -1,6 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.util.mail;
 
 
+import br.edu.utfpr.chemistsincontrol.model.Arquivo;
 import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
@@ -23,10 +24,10 @@ public class MailSender {
 
     private static final Logger LOG = Logger.getLogger(MailSender.class.getName());
 
-    private static final String SMTP_HOST = "";
-    private static final int SMTP_PORT = 587;
-    private static final String SMTP_USERNAME = "";
-    private static final String SMTP_PASSWORD = "";
+    private static final String SMTP_HOST = "smtp.gmail.com";
+    private static final int SMTP_PORT = 465;
+    private static final String SMTP_USERNAME = "centralanalisesutfpr@gmail.com";
+    private static final String SMTP_PASSWORD = "cautfpr@2019";
     private static final String SMTP_AUTH = "SSL_TLS";
 
     private Properties getProperties() {
@@ -56,24 +57,25 @@ public class MailSender {
         return props;
     }
 
-    public void montaCorpoEmail(String corpoEmail, List<String> attachments, MimeMessage message) throws MessagingException, IOException {
+    public void montaCorpoEmail(String corpoEmail, MimeMessage message) throws MessagingException, IOException {
         Multipart multipart = new MimeMultipart();
         MimeBodyPart bodyPart = new MimeBodyPart();
         bodyPart.setText(corpoEmail, "UTF-8", "html");
         multipart.addBodyPart(bodyPart);
-        for (String file : attachments) {
-            file = file.replace("\r", "");
-            file = file.replace("\n", "");
-            if (new File(file).exists()) {
-                bodyPart = new MimeBodyPart();
-                DataSource ds = new FileDataSource(file);
-                bodyPart.setDataHandler(new DataHandler(ds));
-                bodyPart.setFileName(new File(file).getName());
-                bodyPart.setDisposition("attachment");
-                multipart.addBodyPart(bodyPart);
-
-            }
-        }
+//        for (String file : attachments) {
+//            file = file.replace("\r", "");
+//            file = file.replace("\n", "");
+//            if (new File(file).exists()) {
+//                bodyPart = new MimeBodyPart();
+//
+//                DataSource ds = new FileDataSource(file);
+//                bodyPart.setDataHandler(new DataHandler(ds));
+//                bodyPart.setFileName(new File(file).getName());
+//                bodyPart.setDisposition("attachment");
+//                multipart.addBodyPart(bodyPart);
+//
+//            }
+//        }
         message.setContent(multipart);
     }
 
@@ -94,7 +96,7 @@ public class MailSender {
                 message.setFrom(SMTP_USERNAME);
                 message.addRecipient(Message.RecipientType.BCC, new InternetAddress(mailTo));
                 message.setSubject(assunto);
-                montaCorpoEmail(corpo, attachments, message);
+                montaCorpoEmail(corpo, message);
 
                 Transport tp = session.getTransport();
                 tp.connect(SMTP_HOST, SMTP_USERNAME, SMTP_PASSWORD);
