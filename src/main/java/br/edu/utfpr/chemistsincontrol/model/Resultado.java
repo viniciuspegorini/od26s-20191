@@ -1,9 +1,12 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,26 +24,27 @@ public class Resultado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(nullable = false)
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(referencedColumnName = "id", name = "arquivo_id")
-    private Arquivo arquivo;
+    @Lob
+    private MultipartFile arquivo;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "usuario_id")
+//    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
+//    @Column(length = 45, nullable = false)
     private Usuario usuario;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
-    @Column(nullable = false)
-    private Date today;
+     // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
+//    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dtAlteracao;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Formulario formulario;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
-    @Column(length = 255, nullable = false)
-    private String laudo;
+//    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
+//    @Column(length = 255, nullable = false)
+    @Lob
+    private Arquivo laudo;
+
 
 }
