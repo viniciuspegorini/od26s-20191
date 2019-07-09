@@ -13,6 +13,8 @@ insert into modelo (nome, metodologia, resultado, preco_id) values ('Modelo test
 
 insert into amostra (descricao, data_recebimento, usuario_id) values ('Amostra Teste', '2019-06-03 21:50:11.484', 1);
 
+
+
  
 insert into permissao (nome) values ('ROLE_ADMIN');
 insert into permissao (nome) values ('ROLE_SOLICITANTE');
