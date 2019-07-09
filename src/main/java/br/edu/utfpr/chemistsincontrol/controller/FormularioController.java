@@ -30,5 +30,5 @@ public class FormularioController extends CrudController<Formulario, Long> {
     public List<Formulario> getForm(){
         return formularioService.getForm();
     }
-    
+
 }
