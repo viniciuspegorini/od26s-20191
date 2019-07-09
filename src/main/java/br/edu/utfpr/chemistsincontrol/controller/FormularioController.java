@@ -12,6 +12,7 @@ import br.edu.utfpr.chemistsincontrol.repository.ResultadoRepository;
 import br.edu.utfpr.chemistsincontrol.util.mail.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ import br.edu.utfpr.chemistsincontrol.service.FormularioService;
 @RequestMapping("formulario")
 public class FormularioController extends CrudController<Formulario, Long> {
 
-    private static final String EMAIL_FUNTEF = "email@funtef.com.br";
+    private static final String EMAIL_FUNTEF = "cicerafrozza.cf@gmail.com";
 
     @Autowired
     private FormularioService formularioService;
@@ -42,7 +43,7 @@ public class FormularioController extends CrudController<Formulario, Long> {
     }
 
     @Override
-    public Formulario save(@Valid Formulario entity) {
+    public Formulario save(@RequestBody @Valid Formulario entity) {
         Formulario saved = super.save(entity);
         if (saved.getStatus().equalsIgnoreCase("Em faturamento")) {
             enviaEmailFuntef(saved);
@@ -55,19 +56,46 @@ public class FormularioController extends CrudController<Formulario, Long> {
     }
 
     private String montaCorpoEmailFuntef(Formulario f) {
-        return null;
+        String valor = f.getValorTotal().toString();
+        String tipoAnalise = f.getModelo().getNome();
+        String razaoSocial = f.getUsuario().getNome();
+        String cpfCnpj = f.getUsuario().getCpfCnpj();
+        String endereco = f.getUsuario().getEndereco() + "," + f.getUsuario().getCidade() + "," + f.getUsuario().getUf() + "-" + f.getUsuario().getCep();
+        String telefone = f.getUsuario().getTelefone();
+        String email = f.getUsuario().getEmail();
+
+        String corpoEmail = "Olá, <br>"  +
+                "<br>" +
+                "Para cobrança de R$ " + valor +  " referente a " + tipoAnalise + ", para depósito bancário.<br>" +
+                "Dados:<br>" +
+                "Razão social: " + razaoSocial + "<br>" +
+                "CNPJ/CPF: " + cpfCnpj + "<br>" +
+                "Endereço: " + endereco + "<br>" +
+                "Telefone: "+  telefone + "<br>" +
+                "E-mail: " + email ;
+
+        return corpoEmail;
     }
 
-    private String montaCorpoEmailResultado(Formulario f, Resultado r) {
-        return null;
+    private String montaCorpoEmailResultado(Formulario f) {
+        String razaoSocial = f.getUsuario().getNome();
+        String tipoAnalise = f.getModelo().getNome();
+        String email = "Olá," + razaoSocial +  "<br>" +
+                "<br>" +
+                "Sua análise " + tipoAnalise + " está pronto. Acesse sua conta para baixar os resultados.";
+        return email;
     }
 
     private void enviaEmailFuntef(Formulario formulario) {
 
         MailSender ms = new MailSender();
         try {
+
+            System.out.println(montaCorpoEmailFuntef(formulario));
             ms.sendEmail(EMAIL_FUNTEF, "Formulário para Faturamento", montaCorpoEmailFuntef(formulario), null );
         } catch (MessagingException | IOException e) {
+            System.out.println("caiu no carth porra");
+
             e.printStackTrace();
         }
 
@@ -80,7 +108,7 @@ public class FormularioController extends CrudController<Formulario, Long> {
             Resultado resultado = optResultado.get();
             MailSender ms = new MailSender();
             try {
-                ms.sendEmail(formulario.getUsuario().getEmail(), "Resultado da Análise", montaCorpoEmailResultado(formulario, resultado), null);
+                ms.sendEmail(formulario.getUsuario().getEmail(), "Resultado da Análise", montaCorpoEmailResultado(formulario), null);
             }catch ( MessagingException | IOException e ) {
                 e.printStackTrace();
             }
