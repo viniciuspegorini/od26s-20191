@@ -1,8 +1,10 @@
 package br.edu.utfpr.chemistsincontrol.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import br.edu.utfpr.chemistsincontrol.model.Arquivo;
+import br.edu.utfpr.chemistsincontrol.repository.ArquivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -16,61 +18,67 @@ import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.ResultadoService;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("resultado")
-public class ResultadoController  extends CrudController<Resultado, Long> {
+public class ResultadoController extends CrudController<Resultado, Long> {
 
-	@Autowired
-	private ResultadoService resultadoService;
-	
-	@Override
-	@Valid
-	protected CrudService<Resultado, Long> getService() {
-		return resultadoService;
-	}
+    @Autowired
+    private ResultadoService resultadoService;
 
-	@GetMapping( value = "/download/{id}" )
-	public ResponseEntity<Resource> downloadFile(@PathVariable( "id" ) Long id ) {
-		Arquivo arquivo = null;//getService().getField( id, fieldName );
-		if ( arquivo != null ) {
-			Resource res = new ByteArrayResource( arquivo.getContent(), arquivo.getFileName() );
-			return ResponseEntity.ok()
-					.header( HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + arquivo.getFileName() + "\"" )
-					.header( HttpHeaders.CONTENT_TYPE, arquivo.getContentType().getContentType() )
-					.body( res );
-		}
-		else {
-			return new ResponseEntity<>( HttpStatus.NO_CONTENT );
-		}
-	}
+    @Autowired
+    private ArquivoService arquivoService;
 
-	@PostMapping( "/upload" )
-	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file ) {
-		Optional<Resultado> optional = Optional.ofNullable( null );//getRepository().findById( id );
-		if ( optional.isPresent() ) {
-			try {
-				Resultado obj = optional.get();
-				Arquivo arquivo = null;//getService().getField( id, fieldName );
-				if ( arquivo == null ) {
-					arquivo = new Arquivo();
-				}
-				arquivo.setSize( file.getSize() );
-				arquivo.setContent( file.getBytes() );
-				arquivo.setFileName( file.getOriginalFilename() );
-				arquivo.setContentType( Arquivo.EContentType.valueFromString( file.getContentType() ) );
+    @Override
+    @Valid
+    protected CrudService<Resultado, Long> getService() {
+        return resultadoService;
+    }
 
-				return new ResponseEntity<>( HttpStatus.OK );
-			}
-			catch ( IOException e ) {
-				e.printStackTrace();
-				return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR );
-			}
-		}
-		else {
-			return new ResponseEntity<>( HttpStatus.NO_CONTENT );
-		}
-	}
+    @GetMapping(value = "download/{id}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable("id") Long id) {
+        Arquivo arquivo = arquivoService.findById(id).orElse(null);
+        if (arquivo != null) {
+            Resource res = new ByteArrayResource(arquivo.getContent(), arquivo.getFileName());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + arquivo.getFileName() + "\"")
+                    .header(HttpHeaders.CONTENT_TYPE, arquivo.getContentType().getContentType())
+                    .body(res);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+
+    // UPLOAD
+    @PostMapping("upload/{id}")
+    public void upload(@PathVariable("id") Long id,
+                       @RequestParam("arquivo") MultipartFile arquivo,
+                       HttpServletRequest request)
+            throws Exception {
+
+        if (arquivo != null) {
+            saveFile(id, arquivo, request);
+        }
+    }
+
+    private void saveFile(@PathVariable("id") Long id, MultipartFile file,
+                          HttpServletRequest request) throws Exception {
+        try {
+            Resultado resultado = new Resultado();
+            resultado = getService().findOne(id);
+            Arquivo arquivo = new Arquivo();
+
+            arquivo.setSize(file.getSize());
+            arquivo.setContent(file.getBytes());
+            arquivo.setFileName(file.getOriginalFilename());
+            arquivo.setContentType(Arquivo.EContentType.valueFromString(file.getContentType()));
+            resultado.setArquivo(arquivo);
+
+            getService().save(resultado);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Erro ao fazer" + "upload do aquivo. " + e.getMessage());
+        }
+    }
 }

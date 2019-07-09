@@ -22,13 +22,16 @@ public class Resultado {
     private Long id;
 
 //    @Column(nullable = false)
-    private byte[] arquivo;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(referencedColumnName = "id", name = "arquivo_id")
+    private Arquivo arquivo;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Usuario'.")
-    @Column(length = 45, nullable = false)
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", name = "usuario_id")
     private Usuario usuario;
 
-    // @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
     @Column(nullable = false)
     private Date today;
 
