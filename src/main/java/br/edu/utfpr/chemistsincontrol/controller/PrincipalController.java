@@ -21,7 +21,6 @@ public class PrincipalController {
 		return principal;
 	}
 
-
 	@GetMapping("logged-user")
 	public Usuario getUser(Principal principal){
 		if(principal != null){
