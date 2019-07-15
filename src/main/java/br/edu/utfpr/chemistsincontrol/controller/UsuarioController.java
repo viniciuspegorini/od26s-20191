@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("usuario")
 public class UsuarioController extends CrudController<Usuario, Long> {
+
     @Autowired
     private UsuarioService usuarioService;
     @Autowired
