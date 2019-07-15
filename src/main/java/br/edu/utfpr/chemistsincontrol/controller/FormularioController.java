@@ -1,5 +1,8 @@
 package br.edu.utfpr.chemistsincontrol.controller;
 
+import br.edu.utfpr.chemistsincontrol.model.Formulario;
+import br.edu.utfpr.chemistsincontrol.service.CrudService;
+import br.edu.utfpr.chemistsincontrol.service.FormularioService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.utfpr.chemistsincontrol.model.Formulario;
-import br.edu.utfpr.chemistsincontrol.service.CrudService;
-import br.edu.utfpr.chemistsincontrol.service.FormularioService;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("formulario")
@@ -42,6 +44,10 @@ public class FormularioController extends CrudController<Formulario, Long> {
         return formularioService.getForm();
     }
 
+    @GetMapping("/find/{id}")
+    public List<Formulario> findByNotaId(Long Id) {
+        return formularioService.findByNotaId(Id);
+    }
     @Override
     public Formulario save(@RequestBody @Valid Formulario entity) {
         Formulario saved = super.save(entity);

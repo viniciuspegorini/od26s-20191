@@ -1,6 +1,5 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "nota")
@@ -19,6 +18,9 @@ import java.util.Date;
 @EqualsAndHashCode(of = "id")
 @Data
 public class Nota {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,27 +33,21 @@ public class Nota {
     @Column(length = 100, nullable = false)
     private String tipoNota;
 
-
     @NotNull(message = "Não esqueça de preencher o campo 'Usuário'.")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Usuario usuario;
 
-
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Valor'.")
     @Column(nullable = false)
     private Double valor;
 
-
-    @Column
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date dataEmissao;
-
+    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
     @Column(nullable = false)
-    private byte[] anexo;
+    private LocalDate dataEmissao;
 
-    private static final long serialVersionUID = 1L;
+    @Column(nullable = true)
+    private byte[] anexo;
     @Column
     private String fileName;
 
@@ -66,7 +62,6 @@ public class Nota {
     @Enumerated
     private Arquivo.EContentType contentType;
 
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -74,7 +69,6 @@ public class Nota {
     public void setSize(Long size) {
         this.size = size;
     }
-
 
     public void setContent(byte[] content) {
         this.content = content;

@@ -12,5 +12,5 @@ import br.edu.utfpr.chemistsincontrol.model.Formulario;
 public interface FormularioRepository  extends JpaRepository<Formulario, Long> {
 	
     List<Formulario> findAllByOrderByStatus();
-
+    List<Formulario> findByNotaId(Long Id);
 }

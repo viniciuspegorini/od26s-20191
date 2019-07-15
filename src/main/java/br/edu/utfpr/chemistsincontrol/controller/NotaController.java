@@ -1,6 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.controller;
 
 import br.edu.utfpr.chemistsincontrol.model.Arquivo;
+import br.edu.utfpr.chemistsincontrol.model.Resultado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,5 +67,4 @@ public class NotaController extends CrudController<Nota, Long> {
             throw new Exception("Erro ao fazer" + "upload da nota. " + e.getMessage());
         }
     }
-
 }
