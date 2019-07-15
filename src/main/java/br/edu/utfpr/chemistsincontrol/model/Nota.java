@@ -1,5 +1,7 @@
 package br.edu.utfpr.chemistsincontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,10 +42,45 @@ public class Nota {
     @Column(nullable = false)
     private Double valor;
 
-    @NotEmpty(message = "Opa!! Não esqueça de preencher o campo 'Data'.")
-    @Column(nullable = false)
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataEmissao;
 
     @Column(nullable = false)
     private byte[] anexo;
+
+    private static final long serialVersionUID = 1L;
+    @Column
+    private String fileName;
+
+    @Column
+    private Long size;
+
+    @Lob
+    @Column
+    @JsonIgnore
+    private byte[] content;
+    @Column
+    @Enumerated
+    private Arquivo.EContentType contentType;
+
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public void setContentType(Arquivo.EContentType contentType) {
+        this.contentType = contentType;
+    }
 }

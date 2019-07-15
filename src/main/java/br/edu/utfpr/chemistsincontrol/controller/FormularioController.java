@@ -64,13 +64,13 @@ public class FormularioController extends CrudController<Formulario, Long> {
         String telefone = f.getUsuario().getTelefone();
         String email = f.getUsuario().getEmail();
 
-        String corpoEmail = "Ol√°, <br>"  +
+        String corpoEmail = "Ol·, <br>"  +
                 "<br>" +
-                "Para cobran√ßa de R$ " + valor +  " referente a " + tipoAnalise + ", para dep√≥sito banc√°rio.<br>" +
+                "Para cobranÁa de R$ " + valor +  " referente a " + tipoAnalise + ", para depÛsito banc·rio.<br>" +
                 "Dados:<br>" +
-                "Raz√£o social: " + razaoSocial + "<br>" +
+                "Raz„o social: " + razaoSocial + "<br>" +
                 "CNPJ/CPF: " + cpfCnpj + "<br>" +
-                "Endere√ßo: " + endereco + "<br>" +
+                "EndereÁo: " + endereco + "<br>" +
                 "Telefone: "+  telefone + "<br>" +
                 "E-mail: " + email ;
 
@@ -80,9 +80,9 @@ public class FormularioController extends CrudController<Formulario, Long> {
     private String montaCorpoEmailResultado(Formulario f) {
         String razaoSocial = f.getUsuario().getNome();
         String tipoAnalise = f.getModelo().getNome();
-        String email = "Ol√°," + razaoSocial +  "<br>" +
+        String email = "Ol·," + razaoSocial +  "<br>" +
                 "<br>" +
-                "Sua an√°lise " + tipoAnalise + " est√° pronto. Acesse sua conta para baixar os resultados.";
+                "Sua an·lise " + tipoAnalise + " est· pronto. Acesse sua conta para baixar os resultados.";
         return email;
     }
 
@@ -92,7 +92,7 @@ public class FormularioController extends CrudController<Formulario, Long> {
         try {
 
             System.out.println(montaCorpoEmailFuntef(formulario));
-            ms.sendEmail(EMAIL_FUNTEF, "Formul√°rio para Faturamento", montaCorpoEmailFuntef(formulario), null );
+            ms.sendEmail(EMAIL_FUNTEF, "Formul·rio para Faturamento", montaCorpoEmailFuntef(formulario), null );
         } catch (MessagingException | IOException e) {
             System.out.println("caiu no carth porra");
 
@@ -108,7 +108,7 @@ public class FormularioController extends CrudController<Formulario, Long> {
             Resultado resultado = optResultado.get();
             MailSender ms = new MailSender();
             try {
-                ms.sendEmail(formulario.getUsuario().getEmail(), "Resultado da An√°lise", montaCorpoEmailResultado(formulario), null);
+                ms.sendEmail(formulario.getUsuario().getEmail(), "Resultado da An·lise", montaCorpoEmailResultado(formulario), null);
             }catch ( MessagingException | IOException e ) {
                 e.printStackTrace();
             }
