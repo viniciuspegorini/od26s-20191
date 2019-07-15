@@ -55,8 +55,7 @@ public class Usuario implements UserDetails {
     @Column(length = 100, nullable = false)
     private String tipoPessoa;
 
-    @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Departamento'.")
-    @Column(length = 100, nullable = false)
+    @Column( length = 100 )
     private String departamento;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Status'.")
