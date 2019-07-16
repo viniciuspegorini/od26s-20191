@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,7 +41,8 @@ public class Resultado {
     private Formulario formulario;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'Laudo'.")
-    @Column(length = 255, nullable = false)
+    @Type(type = "text")
+    @Column
     private String laudo;
 
 }
