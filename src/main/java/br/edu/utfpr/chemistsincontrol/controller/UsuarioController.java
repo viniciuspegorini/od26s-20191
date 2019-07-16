@@ -41,6 +41,7 @@ public class UsuarioController extends CrudController<Usuario, Long> {
     @PostMapping
     public Usuario save(@RequestBody @Valid Usuario entity) {
         if( Optional.ofNullable( entity.getId() ).orElse(0L).equals(0L)) {
+            entity.setPassword(encoder.encode(entity.getPassword()));
             Set<Permissao> perm = entity.getPermissoes();
             Set<Permissao> attached = new HashSet<>();
             for( Permissao p : perm ){
@@ -66,7 +67,7 @@ public class UsuarioController extends CrudController<Usuario, Long> {
             entity.setSituacaoCadastro(SituacaoCadastro.P);
         }
         if ( entity.getPermissoes() == null) {
-        	entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
+            entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
         }
 
         return super.save(entity);
