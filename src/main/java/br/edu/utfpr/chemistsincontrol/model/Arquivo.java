@@ -61,6 +61,14 @@ public class Arquivo {
         this.contentType = contentType;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public enum EContentType {
         IMG_PNG("image/x-png"),
         IMG_JPEG("image/pjpeg"),
