@@ -29,7 +29,7 @@ public class Instituicao {
     private String nomeFantasia;
 
     @NotNull(message = "Opa!! Não esqueça de preencher o campo 'CPF/CNPJ'.")
-    @Column(length = 14, nullable = false)
+    @Column(length = 18, nullable = false)
     private String cnpj;
 
 }
