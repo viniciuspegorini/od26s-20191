@@ -54,24 +54,25 @@ public class UsuarioController extends CrudController<Usuario, Long> {
         return super.save(entity);
     }
 
-    @PostMapping("salvar")
-    public Usuario save(@RequestBody @Valid Usuario entity, Principal principal) {
-        if (Optional.ofNullable(entity.getId()).orElse(0L).equals(0L)) {
-            entity.setPassword(encoder.encode(entity.getPassword()));
-        }
-        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElse(new Usuario());
-        List<Permissao> pList = usuario.getPermissoes().stream()
-                .filter(p -> p.getNome().contains("ROLE_ADMIN"))
-                .collect(Collectors.toList());
-        if(pList.size() <= 0){
-            entity.setSituacaoCadastro(SituacaoCadastro.P);
-        }
-        if ( entity.getPermissoes() == null) {
-            entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
-        }
-
-        return super.save(entity);
-    }
+//    @PostMapping("salvar")
+//    public Usuario save(@RequestBody @Valid Usuario entity, Principal principal) {
+//        if (Optional.ofNullable(entity.getId()).orElse(0L).equals(0L)) {
+//            entity.setPassword(encoder.encode(entity.getPassword()));
+//        }
+//
+//        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElse(new Usuario());
+//        List<Permissao> pList = usuario.getPermissoes().stream()
+//                .filter(p -> p.getNome().contains("ROLE_ADMIN"))
+//                .collect(Collectors.toList());
+//        if(pList.size() <= 0){
+//            entity.setSituacaoCadastro(SituacaoCadastro.P);
+//        }
+//        if ( entity.getPermissoes() == null) {
+//            entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
+//        }
+//
+//        return super.save(entity);
+//    }
 
     @PutMapping("/alterar-senha")
     public Usuario alteraSenha(Usuario usuario) {
