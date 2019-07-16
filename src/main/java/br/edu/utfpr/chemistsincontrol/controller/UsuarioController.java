@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,6 +35,22 @@ public class UsuarioController extends CrudController<Usuario, Long> {
     @Override
     protected CrudService<Usuario, Long> getService() {
         return this.usuarioService;
+    }
+
+    @Override
+    @PostMapping
+    public Usuario save(@RequestBody @Valid Usuario entity) {
+        if( Optional.ofNullable( entity.getId() ).orElse(0L).equals(0L)) {
+            Set<Permissao> perm = entity.getPermissoes();
+            Set<Permissao> attached = new HashSet<>();
+            for( Permissao p : perm ){
+                attached.add(permissaoService.findByNome(p.getNome()));
+            }
+            entity.setPermissoes( attached );
+        }
+
+
+        return super.save(entity);
     }
 
     @PostMapping("salvar")
