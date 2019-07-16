@@ -19,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/amostra/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
                 .antMatchers("/equipamento/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
                 .antMatchers("/formulario/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA","TECNICO")
-                .antMatchers( HttpMethod.GET, "/instituicao/" ).permitAll()
+                .antMatchers( HttpMethod.GET, "/instituicao" ).permitAll()
                 .antMatchers("/instituicao/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
                 .antMatchers("/modelo/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
                 .antMatchers("/nota/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
@@ -28,7 +28,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/usuario/orientadores").permitAll()
                 .antMatchers("/usuario/**").hasAnyRole("ADMIN", "TECNICO", "RECEPCIONISTA", "SOLICITANTE")
-                .antMatchers(HttpMethod.POST, "/usuario/").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuario").permitAll()
 
                 .anyRequest().authenticated();
     }
