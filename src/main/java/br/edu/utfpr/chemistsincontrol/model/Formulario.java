@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "formulario")
@@ -35,8 +36,8 @@ public class Formulario {
 	@JoinColumn(referencedColumnName = "id")
 	private Modelo modelo;
 
-
-	@Column(length = 255)
+	@Type(type = "text")
+	@Column
 	private String metodologia;
 
 	@NotEmpty(message="Não esqueça selecionar a natureza de operação")
