@@ -67,7 +67,7 @@ public class UsuarioController extends CrudController<Usuario, Long> {
             entity.setSituacaoCadastro(SituacaoCadastro.P);
         }
         if ( entity.getPermissoes() == null) {
-        	entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
+            entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
         }
 
         return super.save(entity);
