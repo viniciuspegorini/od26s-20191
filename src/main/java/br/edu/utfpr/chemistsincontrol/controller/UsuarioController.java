@@ -5,6 +5,7 @@ import br.edu.utfpr.chemistsincontrol.model.SituacaoCadastro;
 import br.edu.utfpr.chemistsincontrol.model.Usuario;
 import br.edu.utfpr.chemistsincontrol.repository.UsuarioRepository;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
+import br.edu.utfpr.chemistsincontrol.service.PermissaoService;
 import br.edu.utfpr.chemistsincontrol.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,8 @@ public class UsuarioController extends CrudController<Usuario, Long> {
     private PasswordEncoder encoder;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private PermissaoService permissaoService;
 
     @Override
     protected CrudService<Usuario, Long> getService() {
@@ -43,6 +46,9 @@ public class UsuarioController extends CrudController<Usuario, Long> {
                 .collect(Collectors.toList());
         if(pList.size() <= 0){
             entity.setSituacaoCadastro(SituacaoCadastro.P);
+        }
+        if ( entity.getPermissoes() == null) {
+        	entity.addPermissao(permissaoService.findByNome("ROLE_SOLICITANTE"));
         }
 
         return super.save(entity);

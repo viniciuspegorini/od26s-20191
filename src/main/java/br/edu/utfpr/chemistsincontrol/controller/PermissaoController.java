@@ -22,4 +22,6 @@ public class PermissaoController extends CrudController<Permissao, Long> {
     protected CrudService<Permissao, Long> getService() {
         return this.instituicaoService;
     }
+    
+    
 }
