@@ -29,12 +29,12 @@ insert into usuario_permissoes (usuario_id, permissoes_id) values (4, 4);
 
 CREATE INDEX IDX_NOTA_01 ON nota (usuario_id, data_emissao);
 
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (1, '/nota/nfe1.pdf','2019-07-01 19:10:25-07', '000000001', 'C', '5000', '2');
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (2, '/nota/nfe2.pdf','2019-07-02 19:10:25-07', '000000002', 'D', '1200', '2');
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (3, '/nota/nfe2.pdf','2019-07-02 19:10:25-07', '000000003', 'D', '250' , '2');
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (4, '/nota/nfe1.pdf','2019-07-02 19:10:25-07', '000000004', 'D', '450',  '1');
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (5, '/nota/nfe2.pdf','2019-07-03 19:10:25-07', '000000005', 'D', '1200', '1');
-INSERT INTO nota(id, pathArquivo, arquivo, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (6, '/nota/nfe2.pdf','2019-07-04 19:10:25-07', '000000006', 'C', '2500' , '1');
+INSERT INTO nota(id,   data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (1, '2019-07-01 19:10:25-07', '000000001', 'C', '5000', '2');
+INSERT INTO nota(id,  data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (2, '2019-07-02 19:10:25-07', '000000002', 'D', '1200', '2');
+INSERT INTO nota(id,   data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (3, '2019-07-02 19:10:25-07', '000000003', 'D', '250' , '2');
+INSERT INTO nota(id,   data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (4, '2019-07-02 19:10:25-07', '000000004', 'D', '450',  '1');
+INSERT INTO nota(id,   data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (5, '2019-07-03 19:10:25-07', '000000005', 'D', '1200', '1');
+INSERT INTO nota(id, data_emissao, numero, tipo_nota, valor,usuario_id)	VALUES (6, '2019-07-04 19:10:25-07', '000000006', 'C', '2500' , '1');
 
 INSERT INTO formulario(metodologia, natureza_operacao, quantidade_ensaios, status, valor_total, amostra_id, modelo_id, nota_id, usuario_id)	VALUES ( 'METODOLOGIA_TESTE', 'NATUREZA_TESTE', 1 , 'TESTE', 100.00 , 1 , 1 , 1 , 1 );
 
