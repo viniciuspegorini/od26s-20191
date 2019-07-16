@@ -115,7 +115,7 @@ public class Usuario implements UserDetails {
     private Set<Permissao> permissoes;
 
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
+    // @com.fasterxml.jackson.annotation.JsonIgnore
     public Set<Permissao> getPermissoes() {
         return permissoes;
     }

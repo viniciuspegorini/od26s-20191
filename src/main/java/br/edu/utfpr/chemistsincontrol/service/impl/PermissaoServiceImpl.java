@@ -22,4 +22,9 @@ public class PermissaoServiceImpl extends CrudServiceImpl<Permissao, Long> imple
     protected PermissaoRepository getRepository() {
         return this.repository;
     }
+
+	@Override
+	public Permissao findByNome(String nome) {
+		return repository.findByNome(nome);
+	}
 }
