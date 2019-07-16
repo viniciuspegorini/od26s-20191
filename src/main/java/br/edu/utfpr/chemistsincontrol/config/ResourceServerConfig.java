@@ -18,7 +18,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/amostra/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
                 .antMatchers("/equipamento/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
-                .antMatchers("/formulario/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA","TECNICO")
+                .antMatchers("/formulario/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
                 .antMatchers( HttpMethod.GET, "/instituicao/" ).permitAll()
                 .antMatchers("/instituicao/**").hasAnyRole("ADMIN", "RECEPCIONISTA")
                 .antMatchers("/modelo/**").hasAnyRole("ADMIN", "SOLICITANTE", "RECEPCIONISTA")
