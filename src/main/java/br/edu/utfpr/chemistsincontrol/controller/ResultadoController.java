@@ -3,20 +3,24 @@ package br.edu.utfpr.chemistsincontrol.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import br.edu.utfpr.chemistsincontrol.model.Arquivo;
-import br.edu.utfpr.chemistsincontrol.repository.ArquivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import br.edu.utfpr.chemistsincontrol.model.Arquivo;
 import br.edu.utfpr.chemistsincontrol.model.Resultado;
 import br.edu.utfpr.chemistsincontrol.service.CrudService;
 import br.edu.utfpr.chemistsincontrol.service.ResultadoService;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -26,8 +30,8 @@ public class ResultadoController extends CrudController<Resultado, Long> {
     @Autowired
     private ResultadoService resultadoService;
 
-    @Autowired
-    private ArquivoService arquivoService;
+    //@Autowired
+    //private ArquivoService arquivoService;
 
     @Override
     @Valid
@@ -37,7 +41,7 @@ public class ResultadoController extends CrudController<Resultado, Long> {
 
     @GetMapping(value = "download/{id}")
     public ResponseEntity<Resource> downloadFile(@PathVariable("id") Long id) {
-        Arquivo arquivo = arquivoService.findById(id).orElse(null);
+        Arquivo arquivo = null; //= arquivoService.findById(id).orElse(null);
         if (arquivo != null) {
             Resource res = new ByteArrayResource(arquivo.getContent(), arquivo.getFileName());
             return ResponseEntity.ok()
